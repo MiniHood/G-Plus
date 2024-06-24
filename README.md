@@ -19,3 +19,5 @@ After that fill out the Globals.lua file.
 
 This project requires Sandboxie Plus.
 
+Credits
+[External Command Executor](https://github.com/Earu/GTerm)
