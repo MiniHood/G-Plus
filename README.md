@@ -20,4 +20,6 @@ After that fill out the Globals.lua file.
 This project requires Sandboxie Plus.
 
 Credits
+
+The only edits I made to this was editing the projects name to match GPlus and made it compatiable with cmd line arguments.
 [External Command Executor](https://github.com/Earu/GTerm)
