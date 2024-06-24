@@ -24,3 +24,6 @@ This project requires Sandboxie Plus.
 The only edits I made to this was editing the projects name to match GPlus and made it compatiable with cmd line arguments.
 
 [External Command Executor](https://github.com/Earu/GTerm)
+
+# Benchmarking
+From my testing (With using a config that does some optimisation magic) each instance will use around 2 GB of ram, I don't believe you can go lower than that, so if you're planning on self hosting large amounts of bots. Don't.
