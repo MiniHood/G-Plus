@@ -1,29 +1,16 @@
-# G-Plus
+# G-Plus V2
 
-[![forthebadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
 
-Join our discord to follow the new version coming out [UPlus](https://discord.gg/j9NEbSc2rE)
+Follow the development of everything plus related via our discord [Plus Studios](https://discord.gg/Fx9W9zzpUk)
 
-GPlus was a side project of mine that I originally planned to sell but discontinued due to prices of garry's mod accounts. It's a botnet that allows the user to connect bots to a garry's mod server, it also comes with a discord bot to control them on a mass scale.
+G-Plus V2 is a revolutionary tool for server owners to quickly connect real, live clients for stress testing and script testing purposes. This will allow you to quickly connect multiple clients to one or multiple servers and control each of them with advanced options.
 
-It was made in LUA and Node JS. I'm quite new to Node JS so the code is quite messy. Other than that, it works. Just make sure to fill out everything correctly, and make sure to make a .ENV file in discord_bot with this structure:
-```env
-BOT_TOKEN=""
-CLIENT_ID=""
-GUILD_ID=""
-```
+This is the new and improved version of V1. V1 was slow, clunky and unorganized. Another core issue was that it's just not very usable for all server owners due to the hard coded and hard to remove link to the mandatory discord bot. This version is no longer tailored towards the ease of access via the discord bot and more tailored towards advanced options for the control of clients.
 
-After that fill out the Globals.lua file. 
+In the previous version we utilized Sandboxie and other various forms to simulate multiple legitimate clients at once, however in the new version, we'll be skipping sandboxie altogether, increasing performance tenfold.
 
-This project requires Sandboxie Plus.
+# Our Goals
+Our goal with this project is to allow server owners to easily test scripts or servers with multiple clients at once, allowing the server owner to easily write instructions for each bot to complete.
 
-# Credits
-
-The only edits I made to this was editing the projects name to match GPlus and made it compatiable with cmd line arguments.
-
-[External Command Executor](https://github.com/Earu/GTerm)
-
-# Benchmarking
-From my testing (With using a config that does some optimisation magic) each instance will use around 2 GB of ram, I don't believe you can go lower than that, so if you're planning on self hosting large amounts of bots. Don't.
+Note: This tool is specifically made for stress testing servers you have permission to stress test.
