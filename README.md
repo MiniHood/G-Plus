@@ -10,6 +10,8 @@ This is the new and improved version of V1. V1 was slow, clunky and unorganized.
 
 In the previous version we utilized Sandboxie and other various forms to simulate multiple legitimate clients at once, however in the new version, we'll be skipping sandboxie altogether, increasing performance tenfold.
 
+Because I don't feel like basically learning a whole new API for memory management in lua V2 will be rewritten in C++.
+
 # Our Goals
 Our goal with this project is to allow server owners to easily test scripts or servers with multiple clients at once, allowing the server owner to easily write instructions for each bot to complete.
 
