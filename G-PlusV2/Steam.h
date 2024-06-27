@@ -4,4 +4,8 @@
 
 class Steam {
 	HANDLE Process;
+
+	struct Offsets {
+
+	};
 };

@@ -2,8 +2,22 @@
 
 #include <iostream>
 
+using namespace std;
+
 class Server {
-	public:std::string servername;
-	public:std::string ip;
-	public:int port;
+private:
+	string _servername;
+	string _ip;
+	int _port;
+
+public:
+	string servername() const { return _servername;  }
+	string ip() const { return _ip; }
+	int port() const { return _port; }
+
+	Server(string ip, int port, OPTIONAL string servername) {
+		_servername = servername;
+		_ip = ip;
+		_port = port;
+	}
 };

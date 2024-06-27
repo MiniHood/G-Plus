@@ -4,7 +4,8 @@
 
 class GMOD {
 	HANDLE Process;
-	struct offsets {
+
+	struct Offsets {
 
 	};
 };
