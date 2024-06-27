@@ -4,7 +4,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com)
 
-Join our discord to follow the new version coming out [UPlus](https://discord.gg/j9NEbSc2rE)
+Follow the development of everything plus related via our discord [Plus Studios](https://discord.gg/Fx9W9zzpUk)
 
 GPlus was a side project of mine that I originally planned to sell but discontinued due to prices of garry's mod accounts. It's a botnet that allows the user to connect bots to a garry's mod server, it also comes with a discord bot to control them on a mass scale.
 
