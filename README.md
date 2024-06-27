@@ -21,3 +21,6 @@ Because I don't feel like basically learning a whole new API for memory manageme
 Our goal with this project is to allow server owners to easily test scripts or servers with multiple clients at once, allowing the server owner to easily write instructions for each bot to complete.
 
 Note: This tool is specifically made for stress testing servers you have permission to stress test.
+
+# Please note
+This is my first project in C++. I'm attempting to follow all good pratices and keep the code clean and optimised but I will trip up somewhere.
