@@ -35,7 +35,7 @@ public:
 		_server = client_server;
 		_steam = client_steam;
 		_gmod = client_gmod;
-		
-		if (ipc_name.empty()) { ipc_name = random_number(); };
+
+		if (ipc_name.empty()) { ipc_name = random_number(); }
 	}
 };
