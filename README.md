@@ -4,6 +4,11 @@
 
 Follow the development of everything plus related via our discord [Plus Studios](https://discord.gg/Fx9W9zzpUk)
 
+# READ BEFORE USE
+This is in active development and is not finished, please refrain from using it until development has finished.
+
+# What is this?
+
 G-Plus V2 is a revolutionary tool for server owners to quickly connect real, live clients for stress testing and script testing purposes. This will allow you to quickly connect multiple clients to one or multiple servers and control each of them with advanced options.
 
 This is the new and improved version of V1. V1 was slow, clunky and unorganized. Another core issue was that it's just not very usable for all server owners due to the hard coded and hard to remove link to the mandatory discord bot. This version is no longer tailored towards the ease of access via the discord bot and more tailored towards advanced options for the control of clients.
