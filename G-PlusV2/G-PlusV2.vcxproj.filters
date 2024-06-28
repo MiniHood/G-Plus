@@ -31,11 +31,8 @@
     <Filter Include="Source Files\Handlers">
       <UniqueIdentifier>{dfe9250e-0fe2-4fe2-bd3f-e398d3bc68ea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\GUI">
-      <UniqueIdentifier>{3d74d8e9-b1b6-4054-a040-f668eca07d6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Pages">
-      <UniqueIdentifier>{38124983-4f3e-46a5-99c1-f86c1d556e70}</UniqueIdentifier>
+      <UniqueIdentifier>{a221b1f2-526f-4fba-b1d4-9551eb579e19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,16 +48,7 @@
     <ClCompile Include="Memory.cpp">
       <Filter>Source Files\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="GUI.cpp">
-      <Filter>Source Files\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Page_Server.cpp">
-      <Filter>Source Files\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Page_Client.cpp">
-      <Filter>Source Files\Handlers</Filter>
-    </ClCompile>
-    <ClCompile Include="Page_Home.cpp">
+    <ClCompile Include="pages.cpp">
       <Filter>Source Files\Handlers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,9 +67,6 @@
     </ClInclude>
     <ClInclude Include="Memory.h">
       <Filter>Header Files\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI.h">
-      <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="pages.h">
       <Filter>Header Files\Pages</Filter>

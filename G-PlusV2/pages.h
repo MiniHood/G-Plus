@@ -1,5 +1,7 @@
-#pragma once
+#include <iostream>
 
+#ifndef PAGES_AAA
+#define PAGES_AAA
 
 class pages {
 public:
@@ -17,3 +19,4 @@ public:
 	};
 };
 
+#endif
