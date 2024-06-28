@@ -33,3 +33,6 @@ checkAndRemoveExpiredAccess();
 
 // Login with the credentials stored in .env
 client.login(process.env.BOT_TOKEN);
+
+// Warning message
+console.log("[!] This version of GPlus is no longer supported. I storngly suggest keeping up to date with V2 via our discord: https://discord.gg/SYS36xf4")
