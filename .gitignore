@@ -6,3 +6,5 @@
 /x64/Debug
 /x64/Release
 .vs/G-PlusV2/v17/Browse.VC.db
+G-PlusV2/G-PlusV2.vcxproj
+G-PlusV2/G-PlusV2.vcxproj.filters
