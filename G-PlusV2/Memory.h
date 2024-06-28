@@ -1,7 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <Windows.h>
+#include "Windows.h"
+#include "variant"
 
-bool M_WriteProcessMemory(int process_id, LPVOID lpBaseAddress, LPCVOID lpBuffer);
-bool M_ReadProcessMemory(int process_id, LPCVOID lpBaseAddress, LPVOID lpBuffer);
+variant<int, string, char> Q_WriteProcessMemory(variant<int, string, char> input, int process_id, LPVOID lpBaseAddress);
+variant<int, string, char> Q_ReadProcessMemory(int process_id, variant<LPCVOID> lpBaseAddress, variant<SIZE_T> size);
