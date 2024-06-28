@@ -61,6 +61,7 @@ using namespace std;
     void pages::home::mainmenu() {
         cout << "[1] Servers" << endl;
         cout << "[2] Clients" << endl;
+        cout << "[3] Plugin Editor" << endl;
 
         int input;
         cin >> input;
@@ -73,6 +74,11 @@ using namespace std;
         case 2:
             pages::client client;
             client.mainmenu();
+            break;
+        case 3:
+            break;
+
+        default:
             break;
         }
     }
