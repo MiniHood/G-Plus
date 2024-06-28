@@ -5,6 +5,8 @@
 using namespace std;
 
 
+
+    #pragma region Client Functions
     void pages::client::mainmenu() {
         cout << "[1] List active clients." << endl;
         cout << "[2] Search client by username." << endl;
@@ -13,7 +15,24 @@ using namespace std;
         cout << endl << "[000] Terminate all clients." << endl;
     }
 
-#pragma region Server Functions
+    void pages::client::list_active_clients() {
+        // TODO
+    }
+
+    void pages::client::search_client_by_name() {
+        // TODO
+    }
+
+    void pages::client::add_new_client() {
+        // TODO
+    }
+
+    void pages::client::teminate_all_clients() {
+        // TODO
+    }
+    #pragma endregion
+
+    #pragma region Server Functions
     void pages::server::mainmenu() {
         cout << "[1] List saved servers." << endl;
         cout << "[2] Search server by name." << endl;
@@ -37,7 +56,7 @@ using namespace std;
     void pages::server::delete_server_records() {
         // TODO
     }
-#pragma endregion
+    #pragma endregion
 
     void pages::home::mainmenu() {
         cout << "[1] Servers" << endl;

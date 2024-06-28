@@ -8,6 +8,10 @@ public:
 	class client {
 	public:
 		void mainmenu();
+		void list_active_clients();
+		void search_client_by_name();
+		void add_new_client();
+		void teminate_all_clients();
 	};
 	class server {
 	public:
