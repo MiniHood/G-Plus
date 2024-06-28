@@ -34,8 +34,8 @@
     <Filter Include="Header Files\GUI">
       <UniqueIdentifier>{3d74d8e9-b1b6-4054-a040-f668eca07d6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Imgui">
-      <UniqueIdentifier>{50a707da-e712-4748-afc7-7d313968c8e1}</UniqueIdentifier>
+    <Filter Include="Header Files\Pages">
+      <UniqueIdentifier>{38124983-4f3e-46a5-99c1-f86c1d556e70}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,20 +54,14 @@
     <ClCompile Include="GUI.cpp">
       <Filter>Source Files\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="ImGUI\imgui.cpp">
-      <Filter>Header Files\Imgui</Filter>
+    <ClCompile Include="Page_Server.cpp">
+      <Filter>Source Files\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="ImGUI\imgui_demo.cpp">
-      <Filter>Header Files\Imgui</Filter>
+    <ClCompile Include="Page_Client.cpp">
+      <Filter>Source Files\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="ImGUI\imgui_draw.cpp">
-      <Filter>Header Files\Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGUI\imgui_tables.cpp">
-      <Filter>Header Files\Imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGUI\imgui_widgets.cpp">
-      <Filter>Header Files\Imgui</Filter>
+    <ClCompile Include="Page_Home.cpp">
+      <Filter>Source Files\Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,23 +83,8 @@
     <ClInclude Include="GUI.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="ImGUI\imconfig.h">
-      <Filter>Header Files\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGUI\imgui.h">
-      <Filter>Header Files\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGUI\imgui_internal.h">
-      <Filter>Header Files\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGUI\imstb_rectpack.h">
-      <Filter>Header Files\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGUI\imstb_textedit.h">
-      <Filter>Header Files\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGUI\imstb_truetype.h">
-      <Filter>Header Files\Imgui</Filter>
+    <ClInclude Include="pages.h">
+      <Filter>Header Files\Pages</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

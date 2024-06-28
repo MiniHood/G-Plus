@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,11 +128,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Page_Client.cpp" />
     <ClCompile Include="G-PlusV2.cpp" />
+    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="Page_Home.cpp" />
+    <ClCompile Include="Server.cpp" />
+    <ClCompile Include="Page_Server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
+    <ClInclude Include="GMOD.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="Memory.h" />
+    <ClInclude Include="pages.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="Steam.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
