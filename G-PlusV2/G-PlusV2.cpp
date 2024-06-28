@@ -4,13 +4,10 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include "GUI.h"
 #include "Memory.h"
 #include "pages.h"
 
 using namespace std;
-
-int currentpage;
 
 void clear_console() { system("cls"); }
 
@@ -29,11 +26,11 @@ void typewrite(string input)
 int main(int argc, char* argv[])
 {
     #ifdef NDEBUG #else // Just skipping if I'm debugging, can't be bothered to wait
-	    // Display Credits
-        string Warning = "This tool is free, if you paid for this you were scammed. \nGithub: https://github.com/MiniHood/G-Plus/tree/v2";
-        typewrite(Warning);
-        sleep(2000);
-        clear_console();
+	// Display Credits
+    string Warning = "This tool is free, if you paid for this you were scammed. \nGithub: https://github.com/MiniHood/G-Plus/tree/v2";
+    typewrite(Warning);
+    sleep(2000);
+    clear_console();
     #endif
 
     pages::home home;
