@@ -1,8 +1,8 @@
 #pragma once
 
-#include "WtsApi32.h"
 #include <Windows.h>
 #include <iostream>
+#include <fstream>
 #include "Client.h"
 
 using namespace std;

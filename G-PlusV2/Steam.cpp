@@ -1,4 +1,5 @@
 #include "Steam.h"
+#include "Globals.h"
 
 HANDLE Steam::StartSteam(Client client) {
 	if (this->HasUpdate() == true)
@@ -18,7 +19,23 @@ bool Steam::StopSteam() {
 
 bool Steam::HasUpdate()
 {
-	// Check if steam must update
+	string steam_client_win32 = Globals::Steam::Path.append("package\\steam_client_win32.manifest");
+	ifstream File(steam_client_win32);
+	string lineBuffer;
+
+	if (!File.is_open())
+		this->HasUpdate(); // Just keep retrying until we get it.
+
+	while (getline(File, lineBuffer))
+	{
+		if (lineBuffer.find("version") != string::npos) // If we're on the line with version then
+		{
+			// Check if the line contains our current version
+			if (lineBuffer.find(Globals::Steam::Version) != string::npos)
+				return false;
+		}
+	}
+
 	return true;
 }
 
