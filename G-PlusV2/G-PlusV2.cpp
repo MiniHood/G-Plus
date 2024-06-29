@@ -22,7 +22,6 @@ void typewrite(string input)
     std::cout << std::endl;
 }
 
-
 int main(int argc, char* argv[])
 {
     #ifdef NDEBUG #else // Just skipping if I'm debugging, can't be bothered to wait
