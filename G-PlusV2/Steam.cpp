@@ -1,18 +1,21 @@
 #include "Steam.h"
 #include "Globals.h"
 
+/*
 HANDLE Steam::StartSteam(Client client) {
+	// Private called by Load()
 	if (this->HasUpdate() == true)
 	{
 		this->ForceUpdate();
-		return;
+		return client.steam.Process;
 	}
 
 	return (HANDLE)1;
 }
+*/
 
 bool Steam::StopSteam() {
-	// Private called by Load()
+	// Private called by Unload()
 	// Stop steam and return true or false
 	return true;
 }
@@ -42,11 +45,18 @@ bool Steam::HasUpdate()
 void Steam::ForceUpdate()
 {
 	// Private, called by CheckForUpdates()
+	// Start steam then
 	// Force an update through WPM
 	// Then call start steam again
+
+	HANDLE Steam = this->StartSteamApplication();
+
+
 	return;
 }
 
 HANDLE Steam::StartSteamApplication(string ipc_name) {
 	// Private called by StartSteam()
+
+	return (HANDLE)0;
 }

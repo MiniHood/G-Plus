@@ -80,5 +80,8 @@
     <ClInclude Include="pages.h">
       <Filter>Header Files\Pages</Filter>
     </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

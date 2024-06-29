@@ -26,7 +26,7 @@ string GMOD::GetServerConnection()
 
 
     if (this->pHandle == NULL)
-        return;
+        return NULL;
 
     char vstModule[] = "vstdlib.dll";
 
@@ -48,7 +48,7 @@ string GMOD::GetServerConnection()
     if (ReadStatus == false)
     {
         cout << "Error reading current server connection. Error code: " << GetLastError() << endl;
-        return;
+        return NULL;
     }
         
     return ConnectionBuffer;
@@ -57,7 +57,7 @@ string GMOD::GetServerConnection()
 GMOD::LocalPlayer::Position GMOD::GetPlayerPosition()
 {
     if (this->pHandle == NULL)
-        return;
+        return this->localPlayer.position;
 
     char clientModule[] = "client.dll";
 
@@ -81,14 +81,14 @@ GMOD::LocalPlayer::Position GMOD::GetPlayerPosition()
     float zBuffer;
 
 
-    BOOL xReadStatus = ReadProcessMemory(this->pHandle, (LPVOID*)XPositionPointerAddress, &xBuffer, 4, NULL);
-    BOOL yReadStatus = ReadProcessMemory(this->pHandle, (LPVOID*)YPositionPointerAddress, &yBuffer, 4, NULL);
-    BOOL zReadStatus = ReadProcessMemory(this->pHandle, (LPVOID*)ZPositionPointerAddress, &zBuffer, 4, NULL);
+    BOOL xReadStatus = ReadProcessMemory(this->pHandle, (unsigned long*)XPositionPointerAddress, &xBuffer, 4, NULL);
+    BOOL yReadStatus = ReadProcessMemory(this->pHandle, (unsigned long*)YPositionPointerAddress, &yBuffer, 4, NULL);
+    BOOL zReadStatus = ReadProcessMemory(this->pHandle, (unsigned long*)ZPositionPointerAddress, &zBuffer, 4, NULL);
 
     if (xReadStatus == false || yReadStatus == false || zReadStatus == false)
     {
         cout << "Error reading current player position. Error code: " << GetLastError() << endl;
-        return;
+        return this->localPlayer.position;
     }
 
     GMOD::LocalPlayer::Position vectorTable;
@@ -102,7 +102,6 @@ GMOD::LocalPlayer::Position GMOD::GetPlayerPosition()
 void GMOD::UpdatePositionStruct()
 {
     // We'll run this in a loop.
-
     GMOD::LocalPlayer::Position vectorTable = this->GetPlayerPosition();
     this->localPlayer.position.x = vectorTable.x;
     this->localPlayer.position.y = vectorTable.y;

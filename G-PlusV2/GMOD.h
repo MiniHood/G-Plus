@@ -44,11 +44,11 @@ private:
         if (phandle == INVALID_HANDLE_VALUE || phandle == NULL);
 
         DWORD offset_null = NULL;
-        ReadProcessMemory(phandle, (LPVOID*)(gameBaseAddr + address), &offset_null, sizeof(offset_null), 0);
+        ReadProcessMemory(phandle, (unsigned long*)(gameBaseAddr + address), &offset_null, sizeof(offset_null), 0);
         DWORD pointeraddress = offset_null; // the address we need
         for (int i = 0; i < offsets.size() - 1; i++) // we dont want to change the last offset value so we do -1
         {
-            ReadProcessMemory(phandle, (LPVOID*)(pointeraddress + offsets.at(i)), &pointeraddress, sizeof(pointeraddress), 0);
+            ReadProcessMemory(phandle, (unsigned long*)(pointeraddress + offsets.at(i)), &pointeraddress, sizeof(pointeraddress), 0);
         }
         return pointeraddress += offsets.at(offsets.size() - 1); // adding the last offset
 	}

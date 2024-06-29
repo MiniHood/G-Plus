@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="GMOD.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="pages.h" />
