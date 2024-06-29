@@ -1,5 +1,8 @@
 #include "Steam.h"
 #include "Globals.h"
+#include "Client.h"
+
+Client client;
 
 /*
 HANDLE Steam::StartSteam(Client client) {
@@ -55,8 +58,19 @@ void Steam::ForceUpdate()
 	return;
 }
 
-HANDLE Steam::StartSteamApplication(string ipc_name) {
+HANDLE Steam::StartSteamApplication(string ipc_name, Client client) {
 	// Private called by StartSteam()
-
+	// TODO: Add steam guard support
+	ostringstream Command;
+	Command << "set VPROJECT=gplus && \"" <<  // Set project enviroment variable
+		Globals::Steam::Path << // Give path to start
+		"steam.exe \" " << // Add steam.exe to path
+		"-master_ipc_name_override " << // Set steam to different shared memory
+		ipc_name << // pass our ipc name
+		" -login " << // Make sure steam logs us in
+		client.username << // Pass our username
+		" " << // Whitespace
+		client.password; // Pass our password
+	system(Command.str().c_str());
 	return (HANDLE)0;
 }
