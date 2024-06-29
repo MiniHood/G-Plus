@@ -59,11 +59,49 @@ void Steam::ForceUpdate(Client client)
 	return;
 }
 
+#include <windows.h>
+#include <iostream>
+
+PROCESS_INFORMATION launchExecutable(const std::string& programPath, const std::string& arguments) {
+	STARTUPINFO sInfo;
+	PROCESS_INFORMATION pInfo;
+
+	ZeroMemory(&sInfo, sizeof(sInfo));
+	sInfo.cb = sizeof(sInfo);
+	ZeroMemory(&pInfo, sizeof(pInfo));
+
+	// Convert strings to LPCTSTR format required by CreateProcess
+	LPCTSTR lpApplicationName = programPath.c_str();
+	LPCTSTR lpCommandLine = arguments.c_str();
+
+	BOOL success = CreateProcess(lpApplicationName,   // Application name
+	   (LPSTR)lpCommandLine,       // Command line arguments
+		NULL,                // Process handle not inheritable
+		NULL,                // Thread handle not inheritable
+		FALSE,               // Set handle inheritance to FALSE
+		CREATE_NO_WINDOW,    // Create No Window flag
+		NULL,                // Use parent's environment block
+		NULL,                // Use parent's starting directory
+		&sInfo,              // Pointer to STARTUPINFO structure
+		&pInfo);             // Pointer to PROCESS_INFORMATION structure
+
+	if (!success) {
+		DWORD dwError = GetLastError();
+		std::cout << "CreateProcess failed (" << dwError << ").\n";
+		return pInfo;
+	}
+	else {
+		return pInfo;
+	}
+}
+
+
 HANDLE Steam::StartSteamApplication(Client client, string ipc_name) {
 	// Private called by StartSteam()
 	// TODO: Add steam guard support
-	ostringstream Command;
-	Command << "set VPROJECT=gplus && \"" <<  // Set project enviroment variable
+
+	ostringstream cmdStream;
+	cmdStream <<  // Set project enviroment variable
 		Globals::Steam::Path << // Give path to start
 		"steam.exe \" " << // Add steam.exe to path
 		"-master_ipc_name_override " << // Set steam to different shared memory
@@ -72,6 +110,25 @@ HANDLE Steam::StartSteamApplication(Client client, string ipc_name) {
 		client.username << // Pass our username
 		" " << // Whitespace
 		client.password; // Pass our password
-	system(Command.str().c_str());
-	return (HANDLE)0;
+
+	PROCESS_INFORMATION cmd = launchExecutable("C:\WINDOWS\system32\cmd.exe", "set VPROJECT=gplus");
+
+	ostringstream SteamString;
+	SteamString << Globals::Steam::Path << "steam.exe";
+
+	ostringstream SteamArguments;
+	SteamArguments 
+		<< "-master_ipc_name_override " << // Set steam to different shared memory
+		ipc_name << // pass our ipc name
+		" -login " << // Make sure steam logs us in
+		client.username << // Pass our username
+		" " << // Whitespace
+		client.password; // Pass our password
+
+	PROCESS_INFORMATION steam = launchExecutable(SteamString.str(), SteamArguments.str());
+
+	CloseHandle(cmd.hProcess);
+	CloseHandle(cmd.hThread);
+
+	return steam.hProcess;
 }
