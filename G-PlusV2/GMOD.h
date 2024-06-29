@@ -6,6 +6,7 @@
 #include <tchar.h>
 #include <vector>
 #include <stdlib.h>
+#include <directxmath.h>
 
 using namespace std;
 
@@ -51,7 +52,22 @@ private:
         }
         return pointeraddress += offsets.at(offsets.size() - 1); // adding the last offset
 	}
+
+    string GetServerConnection();
 public:
+    struct LocalPlayer
+    {
+        struct Position 
+        {
+            float x;
+            float y;
+            float z;
+        };
+
+        float health;
+    };
+
 	HANDLE pHandle;
-	string GetServerConnection();
+    LocalPlayer::Position GetPlayerPosition();
+    bool IsConnected();
 };

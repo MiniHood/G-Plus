@@ -34,6 +34,9 @@
     <Filter Include="Header Files\Pages">
       <UniqueIdentifier>{a221b1f2-526f-4fba-b1d4-9551eb579e19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\API">
+      <UniqueIdentifier>{00970b15-e17b-44e6-ad0e-55651c6d8349}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="G-PlusV2.cpp">
@@ -49,6 +52,12 @@
       <Filter>Source Files\Handlers</Filter>
     </ClCompile>
     <ClCompile Include="pages.cpp">
+      <Filter>Source Files\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="GMOD.cpp">
+      <Filter>Source Files\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Steam.cpp">
       <Filter>Source Files\Handlers</Filter>
     </ClCompile>
   </ItemGroup>
