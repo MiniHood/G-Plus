@@ -22,6 +22,20 @@ private:
 		return rand();
 	}
 
+	// Starting / Stopping
+	HANDLE StartSteam();
+	HANDLE StartGMOD();
+	bool StopSteam();
+	bool StopGMOD();
+
+	// Sync Game
+	bool MustSync();
+	bool ForceSync();
+
+	// Update Steam
+	bool MustUpdate();
+	bool ForceUpdate();
+
 public:
 	string username;
 	string password;
@@ -38,4 +52,11 @@ public:
 
 		if (ipc_name.empty()) { ipc_name = random_number(); }
 	}
+
+	// TODO
+	bool Load(); // Stop steam and gmod and clean up.
+	bool Unload(); // Start steam and gmod, then do whatever we need to do next.
+
+	// Close everything and clean up.
+	void cleanup();
 };
