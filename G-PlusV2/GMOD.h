@@ -6,7 +6,7 @@
 #include <tchar.h>
 #include <vector>
 #include <stdlib.h>
-#include <directxmath.h>
+#include <map>
 
 using namespace std;
 
@@ -53,21 +53,24 @@ private:
         return pointeraddress += offsets.at(offsets.size() - 1); // adding the last offset
 	}
 
-    string GetServerConnection();
 public:
     struct LocalPlayer
     {
-        struct Position 
+        struct Position
         {
             float x;
             float y;
             float z;
-        };
+        } position;
 
         float health;
-    };
+    } localPlayer;
 
+
+    void UpdatePositionStruct();
 	HANDLE pHandle;
+    string GetServerConnection();
+
+private:
     LocalPlayer::Position GetPlayerPosition();
-    bool IsConnected();
 };

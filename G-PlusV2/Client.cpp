@@ -26,9 +26,10 @@ using namespace std;
 		return true;
 	}
 
-	bool Client::GetCurrentConnection()
+	bool Client::IsConnected()
 	{
-		// stored in engine.dll+7DC248
+		// Check if client is connected to a server.
+		return false;
 	}
 
 	HANDLE Client::StartGMOD() {
@@ -65,6 +66,5 @@ using namespace std;
 	void Client::cleanup() {
 		this->StopGMOD();
 		this->StopSteam();
-		
 	}
 #pragma endregion

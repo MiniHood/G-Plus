@@ -36,6 +36,8 @@ private:
 	bool MustUpdate();
 	bool ForceUpdate();
 
+	// Getting in game variables.
+	bool IsConnected();
 public:
 	string username;
 	string password;

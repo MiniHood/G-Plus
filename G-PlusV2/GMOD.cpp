@@ -3,7 +3,7 @@
 string GMOD::GetServerConnection()
 {
     // TODO: When free change this to signature scanning.
-    // Known Bug: Value randomly changes in localhost games.
+    // Known Bug: Value changes in localhost games.
     // Possible issues: Value may change randomly to uncoherint strings during online games.
 
     /*
@@ -24,6 +24,10 @@ string GMOD::GetServerConnection()
         While this behaviour is weird it's predictible. 
     */
 
+
+    if (this->pHandle == NULL)
+        return;
+
     char vstModule[] = "vstdlib.dll";
 
     // Status
@@ -34,9 +38,6 @@ string GMOD::GetServerConnection()
 
     static DWORD CurrentConnectionAddress = 0x007DBE68;
     static vector<DWORD> CurrentConnectionOffsets{ 0x20, 0x10, 0x50, 0x10, 0x38, 0x48, 0xF8 };
-
-    if (this->pHandle == NULL)
-        return;
 
     DWORD BaseAddress = this->GetModuleBaseAddress(vstModule);
     DWORD ConnectionPointerAddress = GetPointerAddress(BaseAddress, CurrentConnectionAddress, CurrentConnectionOffsets);
@@ -53,12 +54,57 @@ string GMOD::GetServerConnection()
     return ConnectionBuffer;
 }
 
-bool GMOD::IsConnected()
-{
-
-}
-
 GMOD::LocalPlayer::Position GMOD::GetPlayerPosition()
 {
+    if (this->pHandle == NULL)
+        return;
 
+    char clientModule[] = "client.dll";
+
+    static DWORD XPositionAddress = 0x009DDDF8;
+    static vector<DWORD> XPositionOffsets{ 50 };
+    DWORD XBaseAddress = this->GetModuleBaseAddress(clientModule);
+    DWORD XPositionPointerAddress = GetPointerAddress(XBaseAddress, XPositionAddress, XPositionOffsets);
+
+    static DWORD YPositionAddress = 0x009DDDF8;
+    static vector<DWORD> YPositionOffsets{ 50 }; // UPDATE 
+    DWORD YBaseAddress = this->GetModuleBaseAddress(clientModule); // UPDATE
+    DWORD YPositionPointerAddress = GetPointerAddress(YBaseAddress, YPositionAddress, YPositionOffsets);
+
+    static DWORD ZPositionAddress = 0x009DDDF8; // UPDATE 
+    static vector<DWORD> ZPositionOffsets{ 50 }; // UPDATE
+    DWORD ZBaseAddress = this->GetModuleBaseAddress(clientModule);
+    DWORD ZPositionPointerAddress = GetPointerAddress(ZBaseAddress, ZPositionAddress, ZPositionOffsets);
+
+    float xBuffer;
+    float yBuffer;
+    float zBuffer;
+
+
+    BOOL xReadStatus = ReadProcessMemory(this->pHandle, (LPVOID*)XPositionPointerAddress, &xBuffer, 4, NULL);
+    BOOL yReadStatus = ReadProcessMemory(this->pHandle, (LPVOID*)YPositionPointerAddress, &yBuffer, 4, NULL);
+    BOOL zReadStatus = ReadProcessMemory(this->pHandle, (LPVOID*)ZPositionPointerAddress, &zBuffer, 4, NULL);
+
+    if (xReadStatus == false || yReadStatus == false || zReadStatus == false)
+    {
+        cout << "Error reading current player position. Error code: " << GetLastError() << endl;
+        return;
+    }
+
+    GMOD::LocalPlayer::Position vectorTable;
+    vectorTable.x = xBuffer;
+    vectorTable.y = yBuffer;
+    vectorTable.z = zBuffer;
+
+    return vectorTable;
+}
+
+void GMOD::UpdatePositionStruct()
+{
+    // We'll run this in a loop.
+
+    GMOD::LocalPlayer::Position vectorTable = this->GetPlayerPosition();
+    this->localPlayer.position.x = vectorTable.x;
+    this->localPlayer.position.y = vectorTable.y;
+    this->localPlayer.position.z = vectorTable.z;
 }
