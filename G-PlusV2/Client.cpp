@@ -14,18 +14,6 @@ using namespace std;
 		return true;
 	}
 
-	bool Client::MustUpdate()
-	{
-		// Check if steam must update
-		return true;
-	}
-
-	bool Client::ForceUpdate()
-	{
-		// Force an update through WPM
-		return true;
-	}
-
 	bool Client::IsConnected()
 	{
 		// Check if client is connected to a server.
@@ -41,16 +29,6 @@ using namespace std;
 		// Stop gmod and return true or false
 		return true;
 	}
-
-	HANDLE Client::StartSteam() {
-		// Start steam and return handle of process
-		return (HANDLE)1;
-	}
-
-	bool Client::StopSteam() {
-		// Stop steam and return true or false
-		return true;
-	}
 #pragma endregion
 
 
@@ -64,7 +42,6 @@ using namespace std;
 	}
 
 	void Client::cleanup() {
-		this->StopGMOD();
-		this->StopSteam();
+		// TODO
 	}
 #pragma endregion
