@@ -2,24 +2,26 @@
 #include "Globals.h"
 #include "Client.h"
 
-Client client;
 
-/*
+
 HANDLE Steam::StartSteam(Client client) {
 	// Private called by Load()
 	if (this->HasUpdate() == true)
 	{
-		this->ForceUpdate();
+		// We'll just warn them that steam is updating and they should restart this client once steam has updated.
+		// this->ForceUpdate();
 		return client.steam.Process;
 	}
 
 	return (HANDLE)1;
 }
-*/
+
 
 bool Steam::StopSteam() {
 	// Private called by Unload()
 	// Stop steam and return true or false
+	TerminateProcess(this->Process, 1);
+	CloseHandle(this->Process);
 	return true;
 }
 
@@ -45,20 +47,19 @@ bool Steam::HasUpdate()
 	return true;
 }
 
-void Steam::ForceUpdate()
+void Steam::ForceUpdate(Client client)
 {
 	// Private, called by CheckForUpdates()
 	// Start steam then
 	// Force an update through WPM
 	// Then call start steam again
 
-	HANDLE Steam = this->StartSteamApplication();
-
-
+	// TOOD
+	HANDLE Steam = this->StartSteamApplication(client);
 	return;
 }
 
-HANDLE Steam::StartSteamApplication(string ipc_name, Client client) {
+HANDLE Steam::StartSteamApplication(Client client, string ipc_name) {
 	// Private called by StartSteam()
 	// TODO: Add steam guard support
 	ostringstream Command;
