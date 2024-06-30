@@ -14,8 +14,6 @@ class Steam;
 class Client {
 
 private:
-	string ipc_name;
-
 	int random_number() {
 		srand(time(NULL));
 		return rand();
@@ -32,6 +30,7 @@ private:
 	// Getting in game variables.
 	bool IsConnected();
 public:
+	string ipc_name;
 	string username;
 	string password;
 	Server server;
