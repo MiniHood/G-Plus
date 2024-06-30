@@ -2,16 +2,38 @@
 
 #include "pages.h"
 #include "Controller.h"
+#include "util.h"
 
 using namespace std;
 
+    #pragma region Client Specific Functions
+    void pages::client::client_options(Client* client)
+    {
+        ostringstream CurrentlyEditing;
+        CurrentlyEditing << "You are currently editing " << client->username;
+        ostringstream Options;
+        Options
+            << "[1] Load client." << endl
+            << "[2] Unload client." << endl
+            << "[3] Garry\'s Mod Control Options" << endl
+            << "[4] Steam Control Options" << endl
+            << endl;
 
-    #pragma region Settings Functions
-        
+        util::clear_console();
+        util::CoutCentered(CurrentlyEditing.str());
+        cout << Options.str() << endl;
+
+        cout << "[!] ";
+        int input;
+        cin >> input;
+
+        return;
+    }
     #pragma endregion
 
     #pragma region Client Functions
     void pages::client::mainmenu() {
+        util::clear_console();
         cout << "[1] List active clients." << endl;
         cout << "[2] Search client by username." << endl;
         cout << "[3] Add new client." << endl;
@@ -32,12 +54,9 @@ using namespace std;
         }
     }
 
-    void pages::client::client_options(Client* client) 
-    {
-        return;
-    }
-
     void pages::client::list_active_clients() {
+        util::clear_console();
+
         int i = 0;
         map<int, Client*> selectionMap;
         for (Client* client : Controller::Clients)
@@ -55,14 +74,17 @@ using namespace std;
     }
 
     void pages::client::search_client_by_name() {
+        util::clear_console();
         // TODO
     }
 
     void pages::client::add_new_client() {
+        util::clear_console();
         // TODO
     }
 
     void pages::client::teminate_all_clients() {
+        util::clear_console();
         // TODO
     }
     #pragma endregion
@@ -94,6 +116,8 @@ using namespace std;
     #pragma endregion
 
     void pages::home::mainmenu() {
+        util::clear_console();
+
         cout << "[1] Servers" << endl;
         cout << "[2] Clients" << endl;
         cout << "[3] Settings" << endl;
