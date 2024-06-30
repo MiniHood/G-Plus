@@ -130,7 +130,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="GMOD.cpp" />
     <ClCompile Include="pages.cpp" />
     <ClCompile Include="G-PlusV2.cpp" />
