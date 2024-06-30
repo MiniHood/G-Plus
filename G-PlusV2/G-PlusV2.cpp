@@ -36,16 +36,23 @@ int main(int argc, char* argv[])
     #endif
 
     // Testing list active clients
-    Server server;
-    GMOD gmod{};
-    Steam steam{};
-    Client client("test", "test", server, steam, gmod, "default");
-    AddNewClient(&client);
+    for (size_t i = 0; i < 15; i++)
+    {
+        Server server;
+        GMOD gmod{};
+        Steam steam{};
+        ostringstream test;
+        test << "test" << i << endl;
+        Client* client = new Client(test.str(), test.str(), server, steam, gmod, "default");
+        AddNewClient(client);
+        cout << "Added " << client->username << endl;
+    }
+
 
     // Testing starting steam
-    client.steam.StartSteam(&client);
-    cout << "Starting steam" << endl;
+    //client.steam.StartSteam(&client);
+    //cout << "Starting steam" << endl;
 
-    //pages::home home;
-    //home.mainmenu();
+    pages::home home;
+    home.mainmenu();
 }
