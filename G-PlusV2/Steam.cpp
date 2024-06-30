@@ -31,7 +31,8 @@ bool Steam::StopSteam() {
 
 bool Steam::HasUpdate()
 {
-	std::string steam_client_win32 = Globals::Steam::Path.append("package\\steam_client_win32.manifest");
+	std::string path = Globals::Steam::Path;
+	std::string steam_client_win32 = path.append("package\\steam_client_win32.manifest");
 	std::ifstream File(steam_client_win32);
 	std::string lineBuffer;
 
