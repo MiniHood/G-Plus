@@ -14,7 +14,6 @@ namespace Controller {
 	
 	// if this doesnt work then we'll use OUT set<Client*> outPtr
 	static void AddNewClient(Client* client) {
-		std::cout << "Added " << client->username << std::endl;
 		if (Clients.contains(client)) {
 			return;
 		}
