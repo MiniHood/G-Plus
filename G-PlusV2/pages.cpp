@@ -7,6 +7,8 @@
 using namespace std;
 
     #pragma region Client Specific Functions
+
+
     void pages::client::client_options(Client* client)
     {
         ostringstream CurrentlyEditing;
@@ -17,6 +19,8 @@ using namespace std;
             << "[2] Unload client." << endl
             << "[3] Garry\'s Mod Control Options" << endl
             << "[4] Steam Control Options" << endl
+            << endl
+            << "[0] Back" << endl
             << endl;
 
         util::clear_console();
@@ -26,6 +30,12 @@ using namespace std;
         cout << "[!] ";
         int input;
         cin >> input;
+
+        switch (input)
+        {
+        case 0:
+            this->list_active_clients();
+        }
 
         return;
     }
@@ -38,7 +48,8 @@ using namespace std;
         cout << "[2] Search client by username." << endl;
         cout << "[3] Add new client." << endl;
 
-        cout << endl << "[000] Terminate all clients." << endl;
+        cout << endl << "[10] Terminate all clients." << endl; // Kinda dangerous so keep it on 10 to avoid mistyping
+        cout << endl << "[0] Back." << endl;
 
         cout << "[!] ";
         int input;
@@ -46,6 +57,9 @@ using namespace std;
 
         switch (input)
         {
+        case 0:
+            pages::home home;
+            home.mainmenu();
         case 1:
             this->list_active_clients();
             break;
@@ -57,12 +71,14 @@ using namespace std;
     void pages::client::list_active_clients() {
         util::clear_console();
 
+        cout << "[0] Back" << endl << endl;
+
         int i = 0;
         map<int, Client*> selectionMap;
         for (Client* client : Controller::Clients)
         {
             selectionMap.insert({i, client});
-            cout << "[" << i << "] " << client->username << endl;
+            cout << "[" << i+1 << "] " << client->username << endl;
             i++;
         }
 
@@ -70,7 +86,12 @@ using namespace std;
         int input;
         cin >> input;
 
-        this->client_options(selectionMap[input]);
+        if (input == 0)
+        {
+            this->mainmenu();
+        }
+
+        this->client_options(selectionMap[input-1]);
     }
 
     void pages::client::search_client_by_name() {
@@ -127,6 +148,8 @@ using namespace std;
         cin >> input;
 
         switch (input) {
+        case 0:
+            this->mainmenu();
         case 1:
             pages::server server;
             server.mainmenu();
@@ -137,9 +160,8 @@ using namespace std;
             break;
         case 3:
             break;
-
         default:
-            break;
+            this->mainmenu();
         }
     }
     
