@@ -1,7 +1,7 @@
 #include "util.h"
 #include <Windows.h>
 
-static void util::clear_console()
+void util::clear_console()
 {
     COORD topLeft = { 0, 0 };
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -19,7 +19,7 @@ static void util::clear_console()
     SetConsoleCursorPosition(console, topLeft);
 }
 
-static void util::CoutCentered(std::string text)
+void util::CoutCentered(std::string text)
 {
     // This function will only center the text if it is less than the length of the console!
     // Otherwise it will just display it on the console without centering it.
