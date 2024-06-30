@@ -130,12 +130,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="GMOD.cpp" />
     <ClCompile Include="pages.cpp" />
     <ClCompile Include="G-PlusV2.cpp" />
     <ClCompile Include="Memory.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Steam.cpp" />
+    <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
@@ -146,6 +148,7 @@
     <ClInclude Include="pages.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="Steam.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
