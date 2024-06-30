@@ -1,16 +1,17 @@
 #pragma once
+#ifndef PAGES_CONTROLLER
+#define PAGES_CONTROLLER
 
 #include <set>
 #include "Client.h"
 #include "Server.h"
 
-using namespace std;
 
 namespace Controller {
-	set<Client*> Clients;
-	set<Server*> Servers;
+	static std::set<Client*> Clients;
+	static std::set<Server*> Servers;
 	
-	void AddNewClient(Client* client) {
+	static void AddNewClient(Client* client) {
 		if (Clients.contains(client)) {
 			return;
 		}
@@ -18,9 +19,11 @@ namespace Controller {
 		Clients.insert(client);
 	}
 
-	void RemoveClient(Client* client)
+	static void RemoveClient(Client* client)
 	{
 		auto i = find(Clients.begin(), Clients.end(), client);
 		Clients.erase(i);
 	}
 }
+
+#endif
