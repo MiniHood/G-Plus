@@ -107,3 +107,8 @@ void GMOD::UpdatePositionStruct()
     this->localPlayer.position.y = vectorTable.y;
     this->localPlayer.position.z = vectorTable.z;
 }
+
+void GMOD::Close()
+{
+    // todo
+};

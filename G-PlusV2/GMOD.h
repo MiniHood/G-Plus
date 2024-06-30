@@ -52,6 +52,8 @@ private:
         return pointeraddress += offsets.at(offsets.size() - 1); // adding the last offset
 	}
 
+    void Close(); // todo
+
 public:
     struct LocalPlayer
     {
@@ -69,7 +71,6 @@ public:
     void UpdatePositionStruct();
 	HANDLE pHandle;
     std::string GetServerConnection();
-
 private:
     LocalPlayer::Position GetPlayerPosition();
 };
