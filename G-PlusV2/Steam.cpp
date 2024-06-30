@@ -92,7 +92,7 @@ PROCESS_INFORMATION _Launch(const string& programPath, const string arguments) {
 		)
 	{
 		cout << "Failed to create steam process" << endl;
-		return;
+		return (_PROCESS_INFORMATION)NULL;
 	}
 	else
 	{
