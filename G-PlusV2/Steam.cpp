@@ -4,14 +4,18 @@
 
 
 
-HANDLE Steam::StartSteam(Client client) {
+HANDLE Steam::StartSteam(Client* client) {
 	// Private called by Load()
 	if (this->HasUpdate() == true)
 	{
 		// We'll just warn them that steam is updating and they should restart this client once steam has updated.
+		// Later on we'll implement forcing an update, once steam updates for me I'll get it done.
+		MessageBoxA(GetConsoleWindow(), "WARNING", "The client you attempted to add requires a steam update. Please update steam then try again.", 0);
 		// this->ForceUpdate();
-		return client.steam.Process;
+		return client->steam.Process;
 	}
+
+	HANDLE SteamProcess = this->StartSteamApplication(client, client->ipc_name);
 
 	return (HANDLE)1;
 }
@@ -47,7 +51,7 @@ bool Steam::HasUpdate()
 	return true;
 }
 
-void Steam::ForceUpdate(Client client)
+void Steam::ForceUpdate(Client* client)
 {
 	// Private, called by CheckForUpdates()
 	// Start steam then
@@ -96,7 +100,7 @@ PROCESS_INFORMATION launchExecutable(const std::string& programPath, const std::
 }
 
 
-HANDLE Steam::StartSteamApplication(Client client, string ipc_name) {
+HANDLE Steam::StartSteamApplication(Client* client, string ipc_name) {
 	// Private called by StartSteam()
 	// TODO: Add steam guard support
 
@@ -107,9 +111,9 @@ HANDLE Steam::StartSteamApplication(Client client, string ipc_name) {
 		"-master_ipc_name_override " << // Set steam to different shared memory
 		ipc_name << // pass our ipc name
 		" -login " << // Make sure steam logs us in
-		client.username << // Pass our username
+		client->username << // Pass our username
 		" " << // Whitespace
-		client.password; // Pass our password
+		client->password; // Pass our password
 
 	PROCESS_INFORMATION cmd = launchExecutable("C:\WINDOWS\system32\cmd.exe", "set VPROJECT=gplus");
 
@@ -121,9 +125,9 @@ HANDLE Steam::StartSteamApplication(Client client, string ipc_name) {
 		<< "-master_ipc_name_override " << // Set steam to different shared memory
 		ipc_name << // pass our ipc name
 		" -login " << // Make sure steam logs us in
-		client.username << // Pass our username
+		client->username << // Pass our username
 		" " << // Whitespace
-		client.password; // Pass our password
+		client->password; // Pass our password
 
 	PROCESS_INFORMATION steam = launchExecutable(SteamString.str(), SteamArguments.str());
 

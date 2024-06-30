@@ -6,6 +6,7 @@
 #include <chrono>
 #include "Memory.h"
 #include "pages.h"
+#include "Client.h"
 
 using namespace std;
 
@@ -32,6 +33,6 @@ int main(int argc, char* argv[])
     clear_console();
     #endif
 
-    pages::home home;
-    home.mainmenu();
+    //pages::home home;
+    //home.mainmenu();
 }
