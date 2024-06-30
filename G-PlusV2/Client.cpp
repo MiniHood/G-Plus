@@ -42,8 +42,6 @@ using namespace std;
 		}
 
 		this->steam.Process = Steam;
-
-		cout << "Got handle." << endl;
 	}
 
 	bool Client::Unload() {
