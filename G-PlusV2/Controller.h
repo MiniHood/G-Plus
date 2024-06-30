@@ -13,20 +13,9 @@ namespace Controller {
 	inline std::set<Server*> Servers;
 	
 	// if this doesnt work then we'll use OUT set<Client*> outPtr
-	static void AddNewClient(Client* client) {
-		if (Clients.contains(client)) {
-			return;
-		}
+	static void AddNewClient(Client* client);
 
-		Clients.insert(client);
-		std::cout << Clients.size() << std::endl;
-	}
-
-	static void RemoveClient(Client* client)
-	{
-		auto i = find(Clients.begin(), Clients.end(), client);
-		Clients.erase(i);
-	}
+	static void RemoveClient(Client* client);
 }
 
 #endif
