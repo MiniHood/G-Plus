@@ -1,10 +1,13 @@
 #pragma once
 
 #include "pages.h"
-
+#include "Controller.h"
 using namespace std;
 
 
+    #pragma region Settings Functions
+        
+    #pragma endregion
 
     #pragma region Client Functions
     void pages::client::mainmenu() {
@@ -13,10 +16,41 @@ using namespace std;
         cout << "[3] Add new client." << endl;
 
         cout << endl << "[000] Terminate all clients." << endl;
+
+        cout << "[!] ";
+        int input;
+        cin >> input;
+
+        switch (input)
+        {
+        case 1:
+            this->list_active_clients();
+            break;
+        case 2:
+            break;
+        }
+    }
+
+    void pages::client::client_options(Client* client) 
+    {
+        return;
     }
 
     void pages::client::list_active_clients() {
-        // TODO
+        int i = 0;
+        map<int, Client*> selectionMap;
+        for (Client* client : Controller::Clients)
+        {
+            selectionMap.insert({i, client});
+            cout << "[" << i << "] " << client->username << endl;
+            i++;
+        }
+
+        cout << "[!] ";
+        int input;
+        cin >> input;
+
+        this->client_options(selectionMap[input]);
     }
 
     void pages::client::search_client_by_name() {
@@ -61,8 +95,9 @@ using namespace std;
     void pages::home::mainmenu() {
         cout << "[1] Servers" << endl;
         cout << "[2] Clients" << endl;
-        cout << "[3] Plugin Editor" << endl;
+        cout << "[3] Settings" << endl;
 
+        cout << "[!] ";
         int input;
         cin >> input;
 

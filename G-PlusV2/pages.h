@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Client.h"
 
 #ifndef PAGES_AAA
 #define PAGES_AAA
@@ -12,6 +13,7 @@ public:
 		void search_client_by_name();
 		void add_new_client();
 		void teminate_all_clients();
+		void client_options(Client* client);
 	};
 	class server {
 	public:
