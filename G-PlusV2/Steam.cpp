@@ -6,18 +6,18 @@
 
 HANDLE Steam::StartSteam(Client* client) {
 	// Private called by Load()
-	if (this->_HasUpdate() == true)
-	{
+	//if (this->_HasUpdate() == true)
+	//{
 		// We'll just warn them that steam is updating and they should restart this client once steam has updated.
 		// Later on we'll implement forcing an update, once steam updates for me I'll get it done.
-		MessageBoxA(GetConsoleWindow(), "WARNING", "The client you attempted to add requires a steam update. Please update steam then try again.", 0);
+		//MessageBoxA(GetConsoleWindow(), "WARNING", "The client you attempted to add requires a steam update. Please update steam then try again.", 0);
 		// this->ForceUpdate();
-		return client->steam.Process;
-	}
+		//return client->steam.Process;
+	//}
 
 	HANDLE SteamProcess = this->_StartSteamApplication(client, client->ipc_name);
 
-	return (HANDLE)1;
+	return SteamProcess;
 }
 
 
@@ -29,10 +29,11 @@ bool Steam::StopSteam() {
 	return true;
 }
 
-bool Steam::_HasUpdate()
+bool Steam::_HasUpdate() // Needs fixed
 {
 	std::string path = Globals::Steam::Path;
 	std::string steam_client_win32 = path.append("package\\steam_client_win32.manifest");
+	std::cout << steam_client_win32 << std::endl;
 	std::ifstream File(steam_client_win32);
 	std::string lineBuffer;
 
