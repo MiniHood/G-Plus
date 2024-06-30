@@ -6,7 +6,7 @@
 
 HANDLE Steam::StartSteam(Client* client) {
 	// Private called by Load()
-	if (this->HasUpdate() == true)
+	if (this->_HasUpdate() == true)
 	{
 		// We'll just warn them that steam is updating and they should restart this client once steam has updated.
 		// Later on we'll implement forcing an update, once steam updates for me I'll get it done.
@@ -15,7 +15,7 @@ HANDLE Steam::StartSteam(Client* client) {
 		return client->steam.Process;
 	}
 
-	HANDLE SteamProcess = this->StartSteamApplication(client, client->ipc_name);
+	HANDLE SteamProcess = this->_StartSteamApplication(client, client->ipc_name);
 
 	return (HANDLE)1;
 }
@@ -29,7 +29,7 @@ bool Steam::StopSteam() {
 	return true;
 }
 
-bool Steam::HasUpdate()
+bool Steam::_HasUpdate()
 {
 	std::string path = Globals::Steam::Path;
 	std::string steam_client_win32 = path.append("package\\steam_client_win32.manifest");
@@ -37,7 +37,7 @@ bool Steam::HasUpdate()
 	std::string lineBuffer;
 
 	if (!File.is_open())
-		this->HasUpdate(); // Just keep retrying until we get it.
+		this->_HasUpdate(); // Just keep retrying until we get it.
 
 	while (getline(File, lineBuffer))
 	{
@@ -52,7 +52,7 @@ bool Steam::HasUpdate()
 	return true;
 }
 
-void Steam::ForceUpdate(Client* client)
+void Steam::_ForceUpdate(Client* client)
 {
 	// Private, called by CheckForUpdates()
 	// Start steam then
@@ -60,7 +60,7 @@ void Steam::ForceUpdate(Client* client)
 	// Then call start steam again
 
 	// TOOD
-	HANDLE Steam = this->StartSteamApplication(client);
+	HANDLE Steam = this->_StartSteamApplication(client);
 	return;
 }
 
@@ -101,7 +101,7 @@ PROCESS_INFORMATION launchExecutable(const std::string& programPath, const std::
 }
 
 
-HANDLE Steam::StartSteamApplication(Client* client, std::string ipc_name) {
+HANDLE Steam::_StartSteamApplication(Client* client, std::string ipc_name) {
 	// Private called by StartSteam()
 	// TODO: Add steam guard support
 

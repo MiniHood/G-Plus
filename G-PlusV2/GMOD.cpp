@@ -39,8 +39,8 @@ std::string GMOD::GetServerConnection()
     static DWORD CurrentConnectionAddress = 0x007DBE68;
     static std::vector<DWORD> CurrentConnectionOffsets{ 0x20, 0x10, 0x50, 0x10, 0x38, 0x48, 0xF8 };
 
-    DWORD BaseAddress = this->GetModuleBaseAddress(vstModule);
-    DWORD ConnectionPointerAddress = GetPointerAddress(BaseAddress, CurrentConnectionAddress, CurrentConnectionOffsets);
+    DWORD BaseAddress = this->_GetModuleBaseAddress(vstModule);
+    DWORD ConnectionPointerAddress = _GetPointerAddress(BaseAddress, CurrentConnectionAddress, CurrentConnectionOffsets);
 
     std::string ConnectionBuffer;
     BOOL ReadStatus = ReadProcessMemory(this->pHandle, (LPVOID*)ConnectionPointerAddress, &ConnectionBuffer, 20, NULL);
@@ -63,18 +63,18 @@ GMOD::LocalPlayer::Position GMOD::GetPlayerPosition()
 
     static DWORD XPositionAddress = 0x009DDDF8;
     static std::vector<DWORD> XPositionOffsets{ 50 };
-    DWORD XBaseAddress = this->GetModuleBaseAddress(clientModule);
-    DWORD XPositionPointerAddress = GetPointerAddress(XBaseAddress, XPositionAddress, XPositionOffsets);
+    DWORD XBaseAddress = this->_GetModuleBaseAddress(clientModule);
+    DWORD XPositionPointerAddress = _GetPointerAddress(XBaseAddress, XPositionAddress, XPositionOffsets);
 
     static DWORD YPositionAddress = 0x009DDDF8;
     static std::vector<DWORD> YPositionOffsets{ 50 }; // UPDATE 
-    DWORD YBaseAddress = this->GetModuleBaseAddress(clientModule); // UPDATE
-    DWORD YPositionPointerAddress = GetPointerAddress(YBaseAddress, YPositionAddress, YPositionOffsets);
+    DWORD YBaseAddress = this->_GetModuleBaseAddress(clientModule); // UPDATE
+    DWORD YPositionPointerAddress = _GetPointerAddress(YBaseAddress, YPositionAddress, YPositionOffsets);
 
     static DWORD ZPositionAddress = 0x009DDDF8; // UPDATE 
     static std::vector<DWORD> ZPositionOffsets{ 50 }; // UPDATE
-    DWORD ZBaseAddress = this->GetModuleBaseAddress(clientModule);
-    DWORD ZPositionPointerAddress = GetPointerAddress(ZBaseAddress, ZPositionAddress, ZPositionOffsets);
+    DWORD ZBaseAddress = this->_GetModuleBaseAddress(clientModule);
+    DWORD ZPositionPointerAddress = _GetPointerAddress(ZBaseAddress, ZPositionAddress, ZPositionOffsets);
 
     float xBuffer;
     float yBuffer;

@@ -11,7 +11,7 @@
 
 class GMOD {
 private:
-    DWORD GetModuleBaseAddress(TCHAR* lpszModuleName)
+    DWORD _GetModuleBaseAddress(TCHAR* lpszModuleName)
     {
         DWORD dwModuleBaseAddress = 0;
         HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, GetProcessId(this->pHandle)); // make snapshot of all modules within process
@@ -34,7 +34,7 @@ private:
         return dwModuleBaseAddress;
     }
 
-	DWORD GetPointerAddress(DWORD gameBaseAddr, DWORD address, std::vector<DWORD> offsets)
+	DWORD _GetPointerAddress(DWORD gameBaseAddr, DWORD address, std::vector<DWORD> offsets)
 	{
         DWORD pID = NULL; // Game process ID
         GetWindowThreadProcessId(FindWindowA(NULL, "Garry\'s Mod (x64)"), &pID);

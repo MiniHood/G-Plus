@@ -12,21 +12,21 @@ class Steam;
 class Client {
 
 private:
-	int random_number() {
+	int _random_number() {
 		srand(time(NULL));
 		return rand();
 	}
 
 	// Starting / Stopping
-	HANDLE StartGMOD();
-	bool StopGMOD();
+	HANDLE _StartGMOD();
+	bool _StopGMOD();
 
 	// Sync Game
-	bool MustSync();
-	bool ForceSync();
+	bool _MustSync();
+	bool _ForceSync();
 
 	// Getting in game variables.
-	bool IsConnected();
+	bool _IsConnected();
 public:
 	std::string ipc_name;
 	std::string username;
@@ -42,7 +42,7 @@ public:
 		steam = client_steam;
 		gmod = client_gmod;
 
-		if (ipc_name.empty()) { ipc_name = random_number(); }
+		if (ipc_name.empty()) { ipc_name = _random_number(); }
 	}
 
 	// TODO
