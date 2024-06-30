@@ -40,9 +40,12 @@ int main(int argc, char* argv[])
     GMOD gmod{};
     Steam steam{};
     Client client("test", "test", server, steam, gmod, "default");
-
     AddNewClient(&client);
 
-    pages::home home;
-    home.mainmenu();
+    // Testing starting steam
+    client.steam.StartSteam(&client);
+    cout << "Starting steam" << endl;
+
+    //pages::home home;
+    //home.mainmenu();
 }
