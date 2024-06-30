@@ -7,8 +7,10 @@
 #include "Memory.h"
 #include "pages.h"
 #include "Client.h"
+#include "Controller.h"
 
 using namespace std;
+using namespace Controller;
 
 void clear_console() { system("cls"); }
 
@@ -33,6 +35,14 @@ int main(int argc, char* argv[])
     clear_console();
     #endif
 
-    //pages::home home;
-    //home.mainmenu();
+    // Testing list active clients
+    Server server;
+    GMOD gmod{};
+    Steam steam{};
+    Client client("test", "test", server, steam, gmod, "default");
+
+    AddNewClient(&client);
+
+    pages::home home;
+    home.mainmenu();
 }

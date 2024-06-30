@@ -31,19 +31,19 @@ bool Steam::StopSteam() {
 
 bool Steam::HasUpdate()
 {
-	string steam_client_win32 = Globals::Steam::Path.append("package\\steam_client_win32.manifest");
-	ifstream File(steam_client_win32);
-	string lineBuffer;
+	std::string steam_client_win32 = Globals::Steam::Path.append("package\\steam_client_win32.manifest");
+	std::ifstream File(steam_client_win32);
+	std::string lineBuffer;
 
 	if (!File.is_open())
 		this->HasUpdate(); // Just keep retrying until we get it.
 
 	while (getline(File, lineBuffer))
 	{
-		if (lineBuffer.find("version") != string::npos) // If we're on the line with version then
+		if (lineBuffer.find("version") != std::string::npos) // If we're on the line with version then
 		{
 			// Check if the line contains our current version
-			if (lineBuffer.find(Globals::Steam::Version) != string::npos)
+			if (lineBuffer.find(Globals::Steam::Version) != std::string::npos)
 				return false;
 		}
 	}
@@ -100,11 +100,11 @@ PROCESS_INFORMATION launchExecutable(const std::string& programPath, const std::
 }
 
 
-HANDLE Steam::StartSteamApplication(Client* client, string ipc_name) {
+HANDLE Steam::StartSteamApplication(Client* client, std::string ipc_name) {
 	// Private called by StartSteam()
 	// TODO: Add steam guard support
 
-	ostringstream cmdStream;
+	std::ostringstream cmdStream;
 	cmdStream <<  // Set project enviroment variable
 		Globals::Steam::Path << // Give path to start
 		"steam.exe \" " << // Add steam.exe to path
@@ -117,10 +117,10 @@ HANDLE Steam::StartSteamApplication(Client* client, string ipc_name) {
 
 	PROCESS_INFORMATION cmd = launchExecutable("C:\WINDOWS\system32\cmd.exe", "set VPROJECT=gplus");
 
-	ostringstream SteamString;
+	std::ostringstream SteamString;
 	SteamString << Globals::Steam::Path << "steam.exe";
 
-	ostringstream SteamArguments;
+	std::ostringstream SteamArguments;
 	SteamArguments 
 		<< "-master_ipc_name_override " << // Set steam to different shared memory
 		ipc_name << // pass our ipc name

@@ -7,10 +7,9 @@
 
 class Client;
 
-using namespace std;
 class Steam {
 private:
-	HANDLE StartSteamApplication(Client* client, string ipc_name = "default_channel");
+	HANDLE StartSteamApplication(Client* client, std::string ipc_name = "default_channel");
 	bool HasUpdate();
 	void ForceUpdate(Client* client);
 public:

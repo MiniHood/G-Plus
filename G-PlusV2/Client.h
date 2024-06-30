@@ -7,8 +7,6 @@
 #include "GMOD.h"
 #include "Steam.h"
 
-using namespace std;
-
 class Steam;
 
 class Client {
@@ -30,14 +28,14 @@ private:
 	// Getting in game variables.
 	bool IsConnected();
 public:
-	string ipc_name;
-	string username;
-	string password;
+	std::string ipc_name;
+	std::string username;
+	std::string password;
 	Server server;
 	Steam steam;
 	GMOD gmod;
 
-	Client(string client_username, string client_password, Server client_server, Steam client_steam, GMOD client_gmod, string ipc_name = "") {
+	Client(std::string client_username, std::string client_password, Server client_server, Steam client_steam, GMOD client_gmod, std::string ipc_name = "") {
 		username = client_username;
 		password = client_password;
 		server = client_server;

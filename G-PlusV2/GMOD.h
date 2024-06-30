@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <map>
 
-using namespace std;
 
 class GMOD {
 private:
@@ -35,7 +34,7 @@ private:
         return dwModuleBaseAddress;
     }
 
-	DWORD GetPointerAddress(DWORD gameBaseAddr, DWORD address, vector<DWORD> offsets)
+	DWORD GetPointerAddress(DWORD gameBaseAddr, DWORD address, std::vector<DWORD> offsets)
 	{
         DWORD pID = NULL; // Game process ID
         GetWindowThreadProcessId(FindWindowA(NULL, "Garry\'s Mod (x64)"), &pID);
@@ -69,7 +68,7 @@ public:
 
     void UpdatePositionStruct();
 	HANDLE pHandle;
-    string GetServerConnection();
+    std::string GetServerConnection();
 
 private:
     LocalPlayer::Position GetPlayerPosition();

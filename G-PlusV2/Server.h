@@ -2,11 +2,10 @@
 
 #include <iostream>
 
-using namespace std;
 
 class Server {
 public:
-	string servername;
-	string ip;
+	std::string servername;
+	std::string ip;
 	int port;
 };

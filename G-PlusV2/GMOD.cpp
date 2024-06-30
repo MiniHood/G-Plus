@@ -1,6 +1,6 @@
 #include "GMOD.h"
 
-string GMOD::GetServerConnection()
+std::string GMOD::GetServerConnection()
 {
     // TODO: When free change this to signature scanning.
     // Known Bug: Value changes in localhost games.
@@ -37,17 +37,17 @@ string GMOD::GetServerConnection()
     // Anything else: Connected to localhost
 
     static DWORD CurrentConnectionAddress = 0x007DBE68;
-    static vector<DWORD> CurrentConnectionOffsets{ 0x20, 0x10, 0x50, 0x10, 0x38, 0x48, 0xF8 };
+    static std::vector<DWORD> CurrentConnectionOffsets{ 0x20, 0x10, 0x50, 0x10, 0x38, 0x48, 0xF8 };
 
     DWORD BaseAddress = this->GetModuleBaseAddress(vstModule);
     DWORD ConnectionPointerAddress = GetPointerAddress(BaseAddress, CurrentConnectionAddress, CurrentConnectionOffsets);
 
-    string ConnectionBuffer;
+    std::string ConnectionBuffer;
     BOOL ReadStatus = ReadProcessMemory(this->pHandle, (LPVOID*)ConnectionPointerAddress, &ConnectionBuffer, 20, NULL);
 
     if (ReadStatus == false)
     {
-        cout << "Error reading current server connection. Error code: " << GetLastError() << endl;
+        std::cout << "Error reading current server connection. Error code: " << GetLastError() << std::endl;
         return NULL;
     }
         
@@ -62,17 +62,17 @@ GMOD::LocalPlayer::Position GMOD::GetPlayerPosition()
     char clientModule[] = "client.dll";
 
     static DWORD XPositionAddress = 0x009DDDF8;
-    static vector<DWORD> XPositionOffsets{ 50 };
+    static std::vector<DWORD> XPositionOffsets{ 50 };
     DWORD XBaseAddress = this->GetModuleBaseAddress(clientModule);
     DWORD XPositionPointerAddress = GetPointerAddress(XBaseAddress, XPositionAddress, XPositionOffsets);
 
     static DWORD YPositionAddress = 0x009DDDF8;
-    static vector<DWORD> YPositionOffsets{ 50 }; // UPDATE 
+    static std::vector<DWORD> YPositionOffsets{ 50 }; // UPDATE 
     DWORD YBaseAddress = this->GetModuleBaseAddress(clientModule); // UPDATE
     DWORD YPositionPointerAddress = GetPointerAddress(YBaseAddress, YPositionAddress, YPositionOffsets);
 
     static DWORD ZPositionAddress = 0x009DDDF8; // UPDATE 
-    static vector<DWORD> ZPositionOffsets{ 50 }; // UPDATE
+    static std::vector<DWORD> ZPositionOffsets{ 50 }; // UPDATE
     DWORD ZBaseAddress = this->GetModuleBaseAddress(clientModule);
     DWORD ZPositionPointerAddress = GetPointerAddress(ZBaseAddress, ZPositionAddress, ZPositionOffsets);
 
@@ -87,7 +87,7 @@ GMOD::LocalPlayer::Position GMOD::GetPlayerPosition()
 
     if (xReadStatus == false || yReadStatus == false || zReadStatus == false)
     {
-        cout << "Error reading current player position. Error code: " << GetLastError() << endl;
+        std::cout << "Error reading current player position. Error code: " << GetLastError() << std::endl;
         return this->localPlayer.position;
     }
 
