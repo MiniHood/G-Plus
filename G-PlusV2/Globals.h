@@ -3,11 +3,11 @@
 
 namespace Globals {
 	namespace Steam {
-		std::string Path = "C:\Program Files (x86)\Steam\\"; 
-		int Version = 1718904662;
+		const std::string Path = "C:\Program Files (x86)\Steam\\";
+		const int Version = 1718904662;
 	}
 	namespace GMOD {
-		std::string Path = "C:\Program Files (x86)\Steam\steamapps\common\GarrysMod\\";
-		std::string PatchVersion = "2023.06.28";
+		const std::string Path = "C:\Program Files (x86)\Steam\steamapps\common\GarrysMod\\";
+		const std::string PatchVersion = "2023.06.28";
 	}
 }
