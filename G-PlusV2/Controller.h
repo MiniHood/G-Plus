@@ -8,15 +8,19 @@
 
 
 namespace Controller {
-	static std::set<Client*> Clients;
-	static std::set<Server*> Servers;
+	// dont bully me for using externs
+	inline std::set<Client*> Clients;
+	inline std::set<Server*> Servers;
 	
+	// if this doesnt work then we'll use OUT set<Client*> outPtr
 	static void AddNewClient(Client* client) {
+		std::cout << "Added " << client->username << std::endl;
 		if (Clients.contains(client)) {
 			return;
 		}
 
 		Clients.insert(client);
+		std::cout << Clients.size() << std::endl;
 	}
 
 	static void RemoveClient(Client* client)
