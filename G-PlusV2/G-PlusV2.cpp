@@ -27,6 +27,8 @@ void typewrite(string input)
 
 int main(int argc, char* argv[])
 {
+    atexit(Controller::OnExitEvent);
+
     #ifdef NDEBUG #else // Just skipping if I'm debugging, can't be bothered to wait
 	// Display Credits
     string Warning = "This tool is free, if you paid for this you were scammed. \nGithub: https://github.com/MiniHood/G-Plus/tree/v2";
@@ -53,6 +55,6 @@ int main(int argc, char* argv[])
     //client.steam.StartSteam(&client);
     //cout << "Starting steam" << endl;
 
-    pages::home home;
-    home.mainmenu();
+    pages::client client;
+    client.mainmenu();
 }

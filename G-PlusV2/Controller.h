@@ -26,6 +26,21 @@ namespace Controller {
 		auto i = find(Clients.begin(), Clients.end(), client);
 		Clients.erase(i);
 	}
+
+	static void OnExitEvent()
+	{
+		// Go through all clients and shut down
+		for (Client* client : Clients)
+		{
+			client->gmod.Exit();
+			client->steam.StopSteam();
+			client->cleanup();
+			delete client;
+		}
+
+		Clients.clear();
+		Servers.clear();
+	}
 }
 
 #endif
