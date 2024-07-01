@@ -1,4 +1,5 @@
 #include "Client.h"
+#include "Controller.h"
 using namespace std;
 
 #pragma region Defining Private Class Functions
