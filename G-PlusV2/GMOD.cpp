@@ -108,7 +108,8 @@ void GMOD::UpdatePositionStruct()
     this->localPlayer.position.z = vectorTable.z;
 }
 
-void GMOD::Close()
+void GMOD::Exit()
 {
-    // todo
+    // Close application
+    delete this->pHandle;
 };

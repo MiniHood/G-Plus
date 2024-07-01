@@ -71,6 +71,7 @@ public:
     void UpdatePositionStruct();
 	HANDLE pHandle;
     std::string GetServerConnection();
+    void Exit();
 private:
     LocalPlayer::Position GetPlayerPosition();
 };
