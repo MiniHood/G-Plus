@@ -1,7 +1,7 @@
 #include "Steam.h"
 #include "Globals.h"
 #include "Client.h"
-
+#include "util.h"
 using namespace std;
 
 HANDLE Steam::StartSteam(Client* client) {
@@ -104,6 +104,9 @@ PROCESS_INFORMATION _Launch(const string& programPath, const string arguments) {
 HANDLE Steam::_StartSteamApplication(Client* client, string ipc_name) {
 	// Private called by StartSteam()
 	// TODO: Add steam guard support
+	
+	// Make sure we're have VPROJECT
+	util::setenv("VPROJECT", "", 1);
 
 	ostringstream cmdStream;
 	ostringstream steamPath;
