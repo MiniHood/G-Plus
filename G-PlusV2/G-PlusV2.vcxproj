@@ -132,9 +132,9 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="GMOD.cpp" />
     <ClCompile Include="GMODApi.cpp" />
+    <ClCompile Include="Memory.cpp" />
     <ClCompile Include="pages.cpp" />
     <ClCompile Include="G-PlusV2.cpp" />
-    <ClCompile Include="Memory.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Steam.cpp" />
     <ClCompile Include="SteamAPI.cpp" />
@@ -147,6 +147,7 @@
     <ClInclude Include="GMOD.h" />
     <ClInclude Include="GMODApi.h" />
     <ClInclude Include="Memory.h" />
+    <ClInclude Include="offsets.h" />
     <ClInclude Include="pages.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="Steam.h" />

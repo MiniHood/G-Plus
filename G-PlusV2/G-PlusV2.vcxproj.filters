@@ -25,9 +25,6 @@
     <Filter Include="Header Files\GMOD">
       <UniqueIdentifier>{11c51372-62e4-431b-b171-6ec09c52d057}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Memory">
-      <UniqueIdentifier>{f747cd64-7262-475d-b1e7-4fdb540b35bf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Handlers">
       <UniqueIdentifier>{dfe9250e-0fe2-4fe2-bd3f-e398d3bc68ea}</UniqueIdentifier>
     </Filter>
@@ -48,9 +45,6 @@
     <ClCompile Include="Server.cpp">
       <Filter>Source Files\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Memory.cpp">
-      <Filter>Source Files\Handlers</Filter>
-    </ClCompile>
     <ClCompile Include="pages.cpp">
       <Filter>Source Files\Handlers</Filter>
     </ClCompile>
@@ -69,6 +63,9 @@
     <ClCompile Include="GMODApi.cpp">
       <Filter>Header Files\API</Filter>
     </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Source Files\Handlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -82,9 +79,6 @@
     </ClInclude>
     <ClInclude Include="GMOD.h">
       <Filter>Header Files\GMOD</Filter>
-    </ClInclude>
-    <ClInclude Include="Memory.h">
-      <Filter>Header Files\Memory</Filter>
     </ClInclude>
     <ClInclude Include="pages.h">
       <Filter>Header Files\Pages</Filter>
@@ -103,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="GMODApi.h">
       <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="offsets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
