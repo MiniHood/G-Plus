@@ -35,14 +35,12 @@ using namespace std;
 
 #pragma region Defining Public Class Functions
 	bool Client::Load() {
-		HANDLE Steam = this->steam.StartSteam(this);
-		if (Steam == 0)
-		{
-			cout << "Failed to load steam." << endl;
-			return false;
-		}
+		this->steam.SetStartSteam(this);
 
-		this->steam.Process = Steam;
+		if (this->steam.pInfo.hProcess == NULL)
+			return false;
+
+		return true;
 	}
 
 	bool Client::Unload() {
