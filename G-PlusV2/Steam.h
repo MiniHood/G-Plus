@@ -4,16 +4,17 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
+#include <string>
 
 class Client;
 
 class Steam {
 private:
-	HANDLE _StartSteamApplication(Client* client, std::string ipc_name = "default_channel");
 	bool _HasUpdate();
 	void _ForceUpdate(Client* client);
 public:
-	HANDLE StartSteam(Client* client);
+	void SetStartSteam(Client* client);
 	bool StopSteam();
-	HANDLE Process;
+	PROCESS_INFORMATION pInfo;
 };
