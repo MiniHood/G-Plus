@@ -8,6 +8,8 @@
 #include "pages.h"
 #include "Client.h"
 #include "Controller.h"
+#include "psapi.h"
+#include <stdlib.h>  
 
 using namespace std;
 using namespace Controller;
@@ -37,24 +39,18 @@ int main(int argc, char* argv[])
     clear_console();
     #endif
 
-    // Testing list active clients
-    for (size_t i = 0; i < 15; i++)
-    {
-        Server server;
-        GMOD gmod{};
-        Steam steam{};
-        ostringstream test;
-        test << "test" << i << endl;
-        Client* client = new Client(test.str(), test.str(), server, steam, gmod, "default");
-        AddNewClient(client);
-        cout << "Added " << client->username << endl;
-    }
-
 
     // Testing starting steam
-    //client.steam.StartSteam(&client);
-    //cout << "Starting steam" << endl;
+    Server server;
+    GMOD gmod{};
+    Steam steam{};
+    ostringstream test;
+    Client* client = new Client("testClient", "testClient", server, steam, gmod, "defaultIPCPIPE");
+    AddNewClient(client);
+    cout << "Added " << client->username << endl;
+    client->steam.SetStartSteam(client);
+    //client->steam.StopSteam();
 
-    pages::client client;
-    client.mainmenu();
+    //pages::client client;
+    //client.mainmenu();
 }
