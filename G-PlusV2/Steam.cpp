@@ -28,7 +28,6 @@ bool Steam::_HasUpdate() // Needs fixed
 {
 	string path = Globals::Steam::Path;
 	string steam_client_win32 = path.append("package\\steam_client_win32.manifest");
-	cout << steam_client_win32 << endl;
 	ifstream File(steam_client_win32);
 	string lineBuffer;
 
@@ -91,7 +90,6 @@ PROCESS_INFORMATION Open_Steam_Process(Client* client)
 	);
 
 	if (!hProcess) {
-		cout << "Failed to create steam. Error code: " << GetLastError() << endl;
 		return (PROCESS_INFORMATION)NULL;
 	}
 
@@ -325,8 +323,5 @@ void Steam::SetStartSteam(Client* client) {
 		client->ipc_name = "default_channel";
 	
 	client->steam.pInfo = Open_Steam_Process(client);
-
-	cout << this->pInfo.dwProcessId << endl;
-	
 	return;
 }
