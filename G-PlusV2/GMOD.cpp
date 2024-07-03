@@ -27,7 +27,7 @@ std::string GMOD::GetServerConnection()
 
 
     if (this->pHandle == NULL)
-        return NULL;
+        return {};
 
     char vstModule[] = "vstdlib.dll";
 
@@ -49,7 +49,7 @@ std::string GMOD::GetServerConnection()
     if (ReadStatus == false)
     {
         std::cout << "Error reading current server connection. Error code: " << GetLastError() << std::endl;
-        return (std::string)NULL;
+        return {};
     }
         
     return ConnectionBuffer;
