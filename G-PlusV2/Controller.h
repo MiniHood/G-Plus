@@ -18,13 +18,27 @@ namespace Controller {
 		}
 
 		Clients.insert(client);
-		std::cout << Clients.size() << std::endl;
 	}
 
 	static void RemoveClient(Client* client)
 	{
 		auto i = find(Clients.begin(), Clients.end(), client);
 		Clients.erase(i);
+	}
+
+	static void AddNewServer(Server* server)
+	{
+		if (Servers.contains(server)) {
+			return;
+		}
+
+		Servers.insert(server);
+	}
+
+	static void RemoveServer(Server* server)
+	{
+		auto i = find(Servers.begin(), Servers.end(), server);
+		Servers.erase(i);
 	}
 
 	static void OnExitEvent()
@@ -38,8 +52,16 @@ namespace Controller {
 			delete client;
 		}
 
+		for (Server* server : Servers)
+		{
+			delete server;
+		}
+
 		Clients.clear();
 		Servers.clear();
+
+		ZeroMemory(&Clients, 0);
+		ZeroMemory(&Servers, 0);
 	}
 }
 
