@@ -150,6 +150,7 @@
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Steam.cpp" />
     <ClCompile Include="SteamAPI.cpp" />
+    <ClCompile Include="Styles.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="Server.h" />
     <ClInclude Include="Steam.h" />
     <ClInclude Include="SteamAPI.h" />
+    <ClInclude Include="Styles.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

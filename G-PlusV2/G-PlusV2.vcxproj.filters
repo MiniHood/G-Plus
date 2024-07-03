@@ -28,9 +28,6 @@
     <Filter Include="Source Files\Handlers">
       <UniqueIdentifier>{dfe9250e-0fe2-4fe2-bd3f-e398d3bc68ea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Pages">
-      <UniqueIdentifier>{a221b1f2-526f-4fba-b1d4-9551eb579e19}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\API">
       <UniqueIdentifier>{00970b15-e17b-44e6-ad0e-55651c6d8349}</UniqueIdentifier>
     </Filter>
@@ -96,6 +93,9 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Source Files\ImGUI</Filter>
     </ClCompile>
+    <ClCompile Include="Styles.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -154,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="imgui\imgui_internal.h">
       <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Styles.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
