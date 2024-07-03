@@ -31,11 +31,11 @@ public:
 	std::string ipc_name;
 	std::string username;
 	std::string password;
-	Server server;
+	Server* server;
 	Steam steam;
 	GMOD gmod;
 
-	Client(std::string client_username, std::string client_password, Server client_server, Steam client_steam, GMOD client_gmod, std::string ipc_name = "") {
+	Client(std::string client_username, std::string client_password, Server* client_server, Steam client_steam, GMOD client_gmod, std::string ipc_name = "") {
 		username = client_username;
 		password = client_password;
 		server = client_server;
