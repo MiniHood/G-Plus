@@ -26,6 +26,14 @@ namespace Controller {
 		Clients.erase(i);
 	}
 
+	static void DeleteClient(Client* client)
+	{
+		client->gmod.Exit();
+		client->steam.StopSteam();
+		client->cleanup();
+		RemoveClient(client);
+	}
+
 	static void AddNewServer(Server* server)
 	{
 		if (Servers.contains(server)) {
@@ -41,6 +49,11 @@ namespace Controller {
 		Servers.erase(i);
 	}
 
+	static void DeleteServer(Server* server)
+	{
+		RemoveServer(server);
+	}
+
 	static void OnExitEvent()
 	{
 		// Go through all clients and shut down
@@ -49,16 +62,11 @@ namespace Controller {
 			client->gmod.Exit();
 			client->steam.StopSteam();
 			client->cleanup();
-			delete client;
 		}
 
-		for (Server* server : Servers)
-		{
-			delete server;
-		}
-
-		Clients.clear();
-		Servers.clear();
+		//for (Server* server : Servers) {
+			//DeleteServer(server);
+		//} This causes an exception for some reason, I'm not sure why?
 
 		ZeroMemory(&Clients, 0);
 		ZeroMemory(&Servers, 0);
