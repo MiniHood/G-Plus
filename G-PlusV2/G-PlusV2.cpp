@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     #endif
 
     // Testing starting steam
-    for (size_t i = 0; i < 15; i++)
+    /*for (size_t i = 0; i < 15; i++)
     {
         Server* server = new Server("DarkRPPPPP"-i, "1277.00.00.11"+i, "8000000"+i);
         AddNewServer(server);
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
         AddNewClient(client);
         cout << "Added " << client->username << endl;
         //client->steam.SetStartSteam(client);
-    }
+    }*/
 
     // Init imgui
     GUI::StartGUI();
