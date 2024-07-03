@@ -146,7 +146,6 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Memory.cpp" />
-    <ClCompile Include="pages.cpp" />
     <ClCompile Include="G-PlusV2.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Steam.cpp" />
@@ -169,7 +168,6 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="offsets.h" />
-    <ClInclude Include="pages.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="Steam.h" />
     <ClInclude Include="SteamAPI.h" />
