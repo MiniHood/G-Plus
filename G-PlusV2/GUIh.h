@@ -1,0 +1,3 @@
+namespace GUI {
+	int StartGUI();
+}
