@@ -421,6 +421,7 @@ int GUI::StartGUI()
                         if (PASSWORD_NEEDS_MORE_LENGTH)
                             ImGui::Text("Your password needs more characters.");
                         ImGui::InputText("- Password", Resize(PasswordBuffer), Resize::len(), ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_Password);
+                        ImGui::Text("I highly suggest you do not edit the IPC Name unless you must.");
                         ImGui::InputText("- IPC Name", Resize(Ipc_Name), Resize::len(), ImGuiInputTextFlags_EnterReturnsTrue);
                         ImGui::Separator();
                         if (SERVER_NEEDS_MORE_LENGTH)
@@ -481,9 +482,7 @@ int GUI::StartGUI()
 
                             if (!SERVER_NEEDS_MORE_LENGTH && !PASSWORD_NEEDS_MORE_LENGTH && !USERNAME_TOO_LONG && !USERNAME_NEEDS_MORE_LENGTH)
                             {
-                                GMOD gmod{};
-                                Steam steam{};
-                                Client* client = new Client(UsernameBuffer, PasswordBuffer, selectedServer, steam, gmod, Ipc_Name);
+                                Client* client = new Client(UsernameBuffer, PasswordBuffer, selectedServer, Steam{}, GMOD{}, !Ipc_Name.empty() ? Ipc_Name : nullptr);
                                 Controller::AddNewClient(client);
 
                                 // Clean up
@@ -592,6 +591,7 @@ int GUI::StartGUI()
                         EditingPort = false;
                     }
 
+                    
                     if (EditingIPCName) {
                         std::string buf{ "" };
                         if (ImGui::InputText("- IPC Name", Resize(buf), Resize::len(), ImGuiInputTextFlags_EnterReturnsTrue)) {
