@@ -47,3 +47,61 @@ uintptr_t Memory::get_base_address(int pid, std::string module)
 	CloseHandle(hSnap);
 	return 0;
 }
+
+// Ported from https://github.com/deplantis/CPP-string-memory-scanner/tree/main/src/string%20memory%20scanner/string%20memory%20scanner/scanner
+static char* current_memory_page = 0;
+static SYSTEM_INFO sys_info;
+static MEMORY_BASIC_INFORMATION info;
+
+std::vector<uintptr_t> Memory::ScanForString(HANDLE hProcess, std::string& stringtofind)
+{
+	GetSystemInfo(&sys_info);
+	std::vector<uintptr_t> return_address;
+	while (current_memory_page < sys_info.lpMaximumApplicationAddress)
+	{
+		Memory::NtQueryVirtualMemory(hProcess, current_memory_page, Memory::MemoryBasicInformation, &info, sizeof(info), 0);
+
+		if (info.State == MEM_COMMIT)
+		{
+			if (info.Protect == PAGE_READWRITE)
+			{
+				std::string buffer;
+				buffer.resize(info.RegionSize + info.RegionSize / 2); // so the buffer don"t overflow
+
+				Memory::ZwReadVirtualMemory(hProcess, current_memory_page, &buffer.at(0), info.RegionSize, 0);
+
+				for (int begin = 0; begin < info.RegionSize; begin++)
+				{
+					if (buffer[begin] == stringtofind.at(0))
+					{
+						std::string stringbuffer;
+
+						for (int copy = 0; copy < stringtofind.size(); copy++)
+						{
+							stringbuffer += buffer[begin + copy];
+						}
+
+						// find all strings that contain the word of the string that need to be searched
+						/*if (stringtofind.find(stringbuffer) != std::string::npos)
+						{
+							addres.push_back((uintptr_t)current_memory_page + begin);
+						}*/
+
+						// find all strings THAT exactly and exactly look like the string that need to be searched
+						if (stringtofind == stringbuffer)
+						{
+							return_address.push_back((uintptr_t)current_memory_page + begin);
+						}
+					}
+
+				}
+			}
+		}
+
+		current_memory_page += info.RegionSize;
+	}
+
+	current_memory_page = 0;
+
+	return return_address;
+}
