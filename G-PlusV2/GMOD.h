@@ -26,7 +26,7 @@ public:
 	HANDLE pHandle;
     std::string GetServerConnection();
     void Exit();
-    HANDLE FindCorrectProcess();
+    HANDLE FindCorrectProcess(std::string& ipc_name);
 private:
     LocalPlayer::Position GetPlayerPosition();
 };

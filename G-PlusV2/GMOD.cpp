@@ -1,5 +1,6 @@
 #include "GMOD.h"
 #include "util.h"
+#include "Memory.h"
 
 std::string GMOD::GetServerConnection()
 {
@@ -114,3 +115,73 @@ void GMOD::Exit()
     // Close application
     delete this->pHandle;
 };
+
+void GMOD::Inject(GMOD* gmod)
+{
+    DWORD gmodPID = gmod->pID;
+    const char* path = "bin/HookModule.dll";
+
+    HANDLE hProc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, gmodPID);
+    if (hProc == INVALID_HANDLE_VALUE)
+    {
+        return;
+    }
+
+    LPVOID strAddy = VirtualAllocEx(hProc, NULL, strlen(path), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+    if (strAddy == NULL) {
+        return;
+    }
+    if (!WriteProcessMemory(hProc, strAddy, path, strlen(path), NULL))
+    {
+        return;
+    }
+
+    LPVOID loadLibraryA = GetProcAddress(GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+    if (!loadLibraryA)
+    {
+        std::cout << "Congratulations, you've somehow deleted kernel32.dll. I'm not sure how the fuck your operating system is working right now." << std::endl;
+        return;
+    }
+    HANDLE hThread = CreateRemoteThread(hProc, NULL, NULL, (LPTHREAD_START_ROUTINE)loadLibraryA, strAddy, NULL, NULL);
+
+    if (hThread == INVALID_HANDLE_VALUE)
+    {
+        return;
+    }
+
+    CloseHandle(hProc);
+    VirtualFreeEx(hProc, strAddy, 0, MEM_RELEASE);
+}
+
+
+HANDLE GMOD::FindCorrectProcess(std::string &ipc_name) {
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (snapshot == INVALID_HANDLE_VALUE) {
+        std::cerr << "Failed to create process snapshot." << std::endl;
+        return nullptr;
+    }
+
+    PROCESSENTRY32 pe32;
+    pe32.dwSize = sizeof(PROCESSENTRY32);
+
+    if (!Process32First(snapshot, &pe32)) {
+        CloseHandle(snapshot);
+        std::cerr << "Failed to retrieve process list." << std::endl;
+        return nullptr;
+    }
+
+    do {
+        HANDLE hProcess = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, FALSE, pe32.th32ProcessID);
+        if (hProcess != NULL) {
+            std::vector<uintptr_t> addresses = Memory::ScanForString(hProcess, ipc_name);
+            if (!addresses.empty()) {
+                CloseHandle(snapshot);
+                return hProcess; // Found the process containing the ipc_name
+            }
+            CloseHandle(hProcess); // Always close handles when done
+        }
+    } while (Process32Next(snapshot, &pe32));
+
+    CloseHandle(snapshot);
+    return nullptr; // No matching process found
+}
