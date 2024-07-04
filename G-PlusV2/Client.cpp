@@ -1,5 +1,7 @@
 #include "Client.h"
 #include "Controller.h"
+#include <algorithm>
+#include <iterator>
 using namespace std;
 
 #pragma region Defining Private Class Functions
@@ -29,6 +31,17 @@ using namespace std;
 	bool Client::_StopGMOD() {
 		// Stop gmod and return true or false
 		return true;
+	}
+
+	string Client::_GenerateRandString()
+	{
+		// this might cause a memory leak :)
+		size_t Len = 24;
+		string Buffer;
+		mt19937 MT{ random_device{}() };
+		uniform_int_distribution<char> distance{ 'a', 'z' };
+		generate_n(back_inserter(Buffer), Len, [&]() { return distance(MT); });
+		return Buffer;
 	}
 #pragma endregion
 
