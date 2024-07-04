@@ -2,12 +2,12 @@
 
 #include <Windows.h>
 #include <iostream>
+#pragma comment(lib, "ntdll.lib")
 
 
 class GMOD {
 private:
-    void Close(); // todo
-
+    void Inject(GMOD* gmod);
 public:
     struct LocalPlayer
     {
@@ -21,11 +21,12 @@ public:
         float health;
     } localPlayer;
 
-
+    int pID;
     void UpdatePositionStruct();
 	HANDLE pHandle;
     std::string GetServerConnection();
     void Exit();
+    HANDLE FindCorrectProcess();
 private:
     LocalPlayer::Position GetPlayerPosition();
 };
