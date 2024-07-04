@@ -12,10 +12,7 @@ class Steam;
 class Client {
 
 private:
-	int _random_number() {
-		srand(time(NULL));
-		return rand();
-	}
+	string _GenerateRandString();
 
 	// Starting / Stopping
 	HANDLE _StartGMOD();
@@ -42,7 +39,9 @@ public:
 		steam = client_steam;
 		gmod = client_gmod;
 
-		if (ipc_name.empty()) { ipc_name = _random_number(); }
+		if (ipc_name.empty()) {
+			ipc_name = _GenerateRandString();
+		}
 	}
 
 	// TODO
