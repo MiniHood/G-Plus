@@ -21,12 +21,42 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ICVar.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLuaShared.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Executor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Execution.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooking.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdint.cpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Execution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
