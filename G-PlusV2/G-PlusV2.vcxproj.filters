@@ -96,6 +96,9 @@
     <ClCompile Include="Styles.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="offsets.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">

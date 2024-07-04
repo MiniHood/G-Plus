@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "G-PlusV2", "G-PlusV2\G-PlusV2.vcxproj", "{024B0074-4A36-476E-80BA-71EB05A1C674}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookModule", "HookModule\HookModule.vcxproj", "{45883FA1-13ED-45F7-B9BB-2E060996A4CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{024B0074-4A36-476E-80BA-71EB05A1C674}.Release|x64.Build.0 = Release|x64
 		{024B0074-4A36-476E-80BA-71EB05A1C674}.Release|x86.ActiveCfg = Release|Win32
 		{024B0074-4A36-476E-80BA-71EB05A1C674}.Release|x86.Build.0 = Release|Win32
+		{45883FA1-13ED-45F7-B9BB-2E060996A4CA}.Debug|x64.ActiveCfg = Debug|x64
+		{45883FA1-13ED-45F7-B9BB-2E060996A4CA}.Debug|x64.Build.0 = Debug|x64
+		{45883FA1-13ED-45F7-B9BB-2E060996A4CA}.Debug|x86.ActiveCfg = Debug|Win32
+		{45883FA1-13ED-45F7-B9BB-2E060996A4CA}.Debug|x86.Build.0 = Debug|Win32
+		{45883FA1-13ED-45F7-B9BB-2E060996A4CA}.Release|x64.ActiveCfg = Release|x64
+		{45883FA1-13ED-45F7-B9BB-2E060996A4CA}.Release|x64.Build.0 = Release|x64
+		{45883FA1-13ED-45F7-B9BB-2E060996A4CA}.Release|x86.ActiveCfg = Release|Win32
+		{45883FA1-13ED-45F7-B9BB-2E060996A4CA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
