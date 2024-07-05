@@ -15,6 +15,9 @@
 #include "psapi.h"
 #include "Controller.h"
 #include "Styles.h"
+#include "filesystem"
+#include "Globals.h"
+
 class Resize {
 public:
     Resize(std::string& s) : s_{ s } { s.resize(len_); }
@@ -44,6 +47,7 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 #define WINDOW_TITLE "GPlusV2 - V0 - Developed by mateoss13"
 
 // Themes from https://github.com/Patitotective/ImThemes <3
+bool done = false;
 
 // Main code
 int GUI::StartGUI()
@@ -110,12 +114,11 @@ int GUI::StartGUI()
     // Make it so our menus stay in the window.
     io.ConfigWindowsMoveFromTitleBarOnly = true;
 
+    // create localhost server
     Server* default_server = new Server("localhost", "127.0.0.1", "80");
     Server* selectedServer = default_server;
     Controller::AddNewServer(default_server);
-
-    // This worked before addnewserver required a client class incase it already exists
-    bool done = false;
+    
     while (!done)
     {
         // Poll and handle messages (inputs, window resize, etc.)
@@ -179,6 +182,9 @@ int GUI::StartGUI()
 
         // GUI Settings
         static bool useVsync = false;
+
+        // Settings
+        static bool ShowThemes = false;
 
         // Main Menu
         { 
@@ -482,7 +488,7 @@ int GUI::StartGUI()
 
                             if (!SERVER_NEEDS_MORE_LENGTH && !PASSWORD_NEEDS_MORE_LENGTH && !USERNAME_TOO_LONG && !USERNAME_NEEDS_MORE_LENGTH)
                             {
-                                Client* client = new Client(UsernameBuffer, PasswordBuffer, selectedServer, Steam{}, GMOD{}, !Ipc_Name.empty() ? Ipc_Name : nullptr);
+                                Client* client = new Client(UsernameBuffer, PasswordBuffer, selectedServer, Steam{}, GMOD{}, !Ipc_Name.empty() ? Ipc_Name : "");
                                 Controller::AddNewClient(client);
 
                                 // Clean up
@@ -730,145 +736,212 @@ int GUI::StartGUI()
             if (showSettings)
             {
                 ImGui::Begin("Settings", &showSettings, ImGuiWindowFlags_NoNavFocus);
-                ImGui::Text("Themes");
+                //  Resize(ServerNameBuffer), Resize::len(),
 
-                if (ImGui::Button("Black Devil"))
-                {
-                    Styles::BlackDevil();
-                }
-                if (ImGui::Button("Bootstrap Dark"))
-                {
-                    Styles::BootstrapDark();
-                }
-                if (ImGui::Button("Cherry"))
-                {
-                    Styles::Cherry();
-                }
-                if (ImGui::Button("Classic"))
-                {
-                    Styles::Classic();
-                }
-                if (ImGui::Button("Classic Steam"))
-                {
-                    Styles::Classic_Steam();
-                }
-                if (ImGui::Button("Clean Dark Red"))
-                {
-                    Styles::Clean_Dark_Red();
-                }
-                if (ImGui::Button("Comfy"))
-                {
-                    Styles::Comfy();
-                }
-                if (ImGui::Button("Duck Red (Quack)"))
-                {
-                    Styles::Duck_Quack_Red();
-                }
-                if (ImGui::Button("Darcula"))
-                {
-                    Styles::Darcula();
-                }
-                if (ImGui::Button("Dark"))
-                {
-                    Styles::Dark();
-                }
-                if (ImGui::Button("Deep Dark"))
-                {
-                    Styles::DeepDark();
-                }
-                if (ImGui::Button("Discord Dark"))
-                {
-                    Styles::Discord_Dark();
-                }
-                if (ImGui::Button("Enemymouse"))
-                {
-                    Styles::Enemyouse();
-                }
-                if (ImGui::Button("Future Dark"))
-                {
-                    Styles::Future_Dark();
-                }
-                if (ImGui::Button("Gold"))
-                {
-                    Styles::Gold();
-                }
-                if (ImGui::Button("Green Font"))
-                {
-                    Styles::GreenFont();
-                }
-                if (ImGui::Button("Light"))
-                {
-                    Styles::Light();
-                }
-                if (ImGui::Button("Material Flat"))
-                {
-                    Styles::Material_Flat();
-                }
-                if (ImGui::Button("Microsoft"))
-                {
-                    Styles::Microsoft();
-                }
-                if (ImGui::Button("Modern"))
-                {
-                    Styles::Modern();
-                }
-                if (ImGui::Button("Moonlight"))
-                {
-                    Styles::Moonlight();
-                }
-                if (ImGui::Button("Photoshop"))
-                {
-                    Styles::Photoshop();
-                }
-                if (ImGui::Button("Purple Comfy"))
-                {
-                    Styles::Purple_Comfy();
-                }
-                if (ImGui::Button("Quick Minimal Look"))
-                {
-                    Styles::Quick_Minimal_Look();
-                }
-                if (ImGui::Button("Red Font"))
-                {
-                    Styles::Red_Font();
-                }
-                ImGui::BeginDisabled();
-                if (ImGui::Button("Red Oni"))
-                {
-                    Styles::Red_Oni();
-                }
-                ImGui::EndDisabled();
-                if (ImGui::Button("Rounded Visual Studio"))
-                {
-                    Styles::Rounded_Visual_Studio();
-                }
-                if (ImGui::Button("Soft Cherry"))
-                {
-                    Styles::Soft_Cherry();
-                }
-                if (ImGui::Button("Sonic Riders"))
-                {
-                    Styles::Sonic_Riders();
-                }
-                if (ImGui::Button("Unreal"))
-                {
-                    Styles::Unreal();
-                }
-                if (ImGui::Button("Visual Studio"))
-                {
-                    Styles::Visual_Studio();
-                }
-                if (ImGui::Button("ledSynthmaster"))
-                {
-                    Styles::IedSynthmaster();
-                }
+                ImGui::Checkbox("Show Themes", &ShowThemes);
 
+                if (ShowThemes)
+                {
+                    if (ImGui::Button("Black Devil"))
+                    {
+                        Styles::BlackDevil();
+                    }
+                    if (ImGui::Button("Bootstrap Dark"))
+                    {
+                        Styles::BootstrapDark();
+                    }
+                    if (ImGui::Button("Cherry"))
+                    {
+                        Styles::Cherry();
+                    }
+                    if (ImGui::Button("Classic"))
+                    {
+                        Styles::Classic();
+                    }
+                    if (ImGui::Button("Classic Steam"))
+                    {
+                        Styles::Classic_Steam();
+                    }
+                    if (ImGui::Button("Clean Dark Red"))
+                    {
+                        Styles::Clean_Dark_Red();
+                    }
+                    if (ImGui::Button("Comfy"))
+                    {
+                        Styles::Comfy();
+                    }
+                    if (ImGui::Button("Duck Red (Quack)"))
+                    {
+                        Styles::Duck_Quack_Red();
+                    }
+                    if (ImGui::Button("Darcula"))
+                    {
+                        Styles::Darcula();
+                    }
+                    if (ImGui::Button("Dark"))
+                    {
+                        Styles::Dark();
+                    }
+                    if (ImGui::Button("Deep Dark"))
+                    {
+                        Styles::DeepDark();
+                    }
+                    if (ImGui::Button("Discord Dark"))
+                    {
+                        Styles::Discord_Dark();
+                    }
+                    if (ImGui::Button("Enemymouse"))
+                    {
+                        Styles::Enemyouse();
+                    }
+                    if (ImGui::Button("Future Dark"))
+                    {
+                        Styles::Future_Dark();
+                    }
+                    if (ImGui::Button("Gold"))
+                    {
+                        Styles::Gold();
+                    }
+                    if (ImGui::Button("Green Font"))
+                    {
+                        Styles::GreenFont();
+                    }
+                    if (ImGui::Button("Light"))
+                    {
+                        Styles::Light();
+                    }
+                    if (ImGui::Button("Material Flat"))
+                    {
+                        Styles::Material_Flat();
+                    }
+                    if (ImGui::Button("Microsoft"))
+                    {
+                        Styles::Microsoft();
+                    }
+                    if (ImGui::Button("Modern"))
+                    {
+                        Styles::Modern();
+                    }
+                    if (ImGui::Button("Moonlight"))
+                    {
+                        Styles::Moonlight();
+                    }
+                    if (ImGui::Button("Photoshop"))
+                    {
+                        Styles::Photoshop();
+                    }
+                    if (ImGui::Button("Purple Comfy"))
+                    {
+                        Styles::Purple_Comfy();
+                    }
+                    if (ImGui::Button("Quick Minimal Look"))
+                    {
+                        Styles::Quick_Minimal_Look();
+                    }
+                    if (ImGui::Button("Red Font"))
+                    {
+                        Styles::Red_Font();
+                    }
+                    ImGui::BeginDisabled();
+                    if (ImGui::Button("Red Oni"))
+                    {
+                        Styles::Red_Oni();
+                    }
+                    ImGui::EndDisabled();
+                    if (ImGui::Button("Rounded Visual Studio"))
+                    {
+                        Styles::Rounded_Visual_Studio();
+                    }
+                    if (ImGui::Button("Soft Cherry"))
+                    {
+                        Styles::Soft_Cherry();
+                    }
+                    if (ImGui::Button("Sonic Riders"))
+                    {
+                        Styles::Sonic_Riders();
+                    }
+                    if (ImGui::Button("Unreal"))
+                    {
+                        Styles::Unreal();
+                    }
+                    if (ImGui::Button("Visual Studio"))
+                    {
+                        Styles::Visual_Studio();
+                    }
+                    if (ImGui::Button("ledSynthmaster"))
+                    {
+                        Styles::IedSynthmaster();
+                    }
+                }
 
                 ImGui::Spacing();
                 ImGui::Separator();
                 ImGui::Spacing();
                 ImGui::Text("GUI Settings");
                 ImGui::Checkbox("Use vSync", &useVsync);
+                ImGui::Spacing();
+                ImGui::Separator();
+                ImGui::Spacing();
+                ImGui::Text("Steam");
+
+
+                static std::string SteamPathBuffer;
+                static std::string SteamVersionBuffer;
+
+                std::ostringstream STEAMPL;
+                STEAMPL << "Steam Path (" << Globals::Steam::Path << ")";
+                std::string labelPass_steampath = STEAMPL.str() + "##" + std::to_string((int)&STEAMPL);
+                if (ImGui::InputText(labelPass_steampath.c_str(), Resize(SteamPathBuffer), Resize::len(), ImGuiInputTextFlags_EnterReturnsTrue))
+                {
+                    if (std::filesystem::is_directory(SteamPathBuffer))
+                    {
+                        Globals::Steam::Path = SteamPathBuffer;
+                    }
+                }
+
+                std::ostringstream STEAMVL;
+                STEAMVL << "Steam Version (" << Globals::Steam::Version << ")";
+                std::string labelPass_steamversion = STEAMVL.str() + "##" + std::to_string((int)&STEAMVL);
+                if (ImGui::InputText(labelPass_steamversion.c_str(), Resize(SteamVersionBuffer), Resize::len(), ImGuiInputTextFlags_EnterReturnsTrue))
+                {
+                    Globals::Steam::Version = SteamVersionBuffer;
+                }
+
+                ImGui::Spacing();
+                ImGui::Separator();
+                ImGui::Spacing();
+                ImGui::Text("Garry\'s Mod");
+
+                static std::string GMODPathBuffer;
+                static std::string GMODVersionBuffer;
+
+                std::ostringstream GMODPL;
+                GMODPL << "Garry\'s Mod Path (" << Globals::GMOD::Path << ")";
+                std::string labelPass_gmodpath = GMODPL.str() + "##" + std::to_string((int)&GMODPL);
+                if (ImGui::InputText(labelPass_gmodpath.c_str(), Resize(GMODPathBuffer), Resize::len(), ImGuiInputTextFlags_EnterReturnsTrue))
+                {
+                    if (std::filesystem::is_directory(GMODPathBuffer))
+                    {
+                        Globals::GMOD::Path = GMODPathBuffer;
+                    }
+                }
+
+
+                std::ostringstream GMODVL;
+                GMODPL << "Garry\'s Mod Version (" << Globals::GMOD::PatchVersion << ")";
+                std::string labelPass_version = GMODPL.str() + "##" + std::to_string((int)&GMODVL);
+                if (ImGui::InputText(labelPass_version.c_str(), Resize(GMODVersionBuffer), Resize::len(), ImGuiInputTextFlags_EnterReturnsTrue))
+                {
+                    if (std::filesystem::is_directory(GMODVersionBuffer))
+                    {
+                        Globals::GMOD::Path = GMODVersionBuffer;
+                    }
+                }
+
+
+                ImGui::Spacing();
+                ImGui::Separator();
+                ImGui::Spacing();
 
                 ImGui::End();
             }
