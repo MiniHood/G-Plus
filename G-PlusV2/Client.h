@@ -12,7 +12,7 @@ class Steam;
 class Client {
 
 private:
-	string _GenerateRandString();
+	std::string _GenerateRandString();
 
 	// Starting / Stopping
 	HANDLE _StartGMOD();
@@ -32,14 +32,14 @@ public:
 	Steam steam;
 	GMOD gmod;
 
-	Client(std::string client_username, std::string client_password, Server* client_server, Steam client_steam, GMOD client_gmod, std::string ipc_name = "") {
+	Client(std::string client_username, std::string client_password, Server* client_server, Steam client_steam, GMOD client_gmod, std::string _ipc_name = "") {
 		username = client_username;
 		password = client_password;
 		server = client_server;
 		steam = client_steam;
 		gmod = client_gmod;
 
-		if (ipc_name.empty()) {
+		if (_ipc_name == "") {
 			ipc_name = _GenerateRandString();
 		}
 	}
