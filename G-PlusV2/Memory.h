@@ -53,5 +53,5 @@ namespace Memory {
 		WriteProcessMemory(hProcess, address, (LPCVOID)value, sizeof(value), NULL);
 	}
 
-	std::vector<uintptr_t> Memory::ScanForString(HANDLE hProcess, std::string& stringtofind);
+	std::vector<uintptr_t> ScanForString(HANDLE hProcess, std::string& stringtofind);
 }
