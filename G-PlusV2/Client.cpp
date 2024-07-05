@@ -35,13 +35,17 @@ using namespace std;
 
 	string Client::_GenerateRandString()
 	{
-		// this might cause a memory leak :)
-		size_t Len = 24;
-		string Buffer;
-		mt19937 MT{ random_device{}() };
-		uniform_int_distribution<char> distance{ 'a', 'z' };
-		generate_n(back_inserter(Buffer), Len, [&]() { return distance(MT); });
-		return Buffer;
+		const std::string charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<> distr(0, charset.size() - 1);
+
+		std::string result;
+		result.reserve(24);
+		for (int i = 0; i < 24; ++i) {
+			result += charset[distr(gen)];
+		}
+		return result;
 	}
 #pragma endregion
 
