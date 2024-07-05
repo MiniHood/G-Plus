@@ -93,11 +93,11 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Source Files\ImGUI</Filter>
     </ClCompile>
-    <ClCompile Include="Styles.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="offsets.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Styles.cpp">
+      <Filter>Source Files\Handlers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
