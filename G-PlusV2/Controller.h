@@ -32,6 +32,7 @@ namespace Controller {
 		client->steam.StopSteam();
 		client->cleanup();
 		RemoveClient(client);
+		delete[] client;
 	}
 
 	static void AddNewServer(Server* server)
