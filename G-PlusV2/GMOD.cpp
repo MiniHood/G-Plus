@@ -1,7 +1,8 @@
 #include "GMOD.h"
 #include "util.h"
 #include "Memory.h"
-
+#include "Globals.h"
+#include <cassert>
 std::string GMOD::GetServerConnection()
 {
     // TODO: When free change this to signature scanning.
@@ -112,8 +113,9 @@ void GMOD::UpdatePositionStruct()
 
 void GMOD::Exit()
 {
-    // Close application
-    delete this->pHandle;
+    TerminateProcess(this->pHandle, 0);
+    CloseHandle(this->pHandle);
+    // dont need to delete, exiting should clear the memory anyways
 };
 
 void GMOD::Inject(GMOD* gmod)
@@ -170,9 +172,14 @@ HANDLE GMOD::FindCorrectProcess(std::string &ipc_name) {
         return nullptr;
     }
 
+    int Timer = Globals::GMOD::SearchTimeOut;
+
+
+
     do {
         HANDLE hProcess = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, FALSE, pe32.th32ProcessID);
-        if (hProcess != NULL) {
+        char buffer[MAX_PATH];
+        if (hProcess != NULL && GetProcessInformation()) {
             std::vector<uintptr_t> addresses = Memory::ScanForString(hProcess, ipc_name);
             if (!addresses.empty()) {
                 CloseHandle(snapshot);
