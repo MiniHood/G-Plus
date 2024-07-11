@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     #endif
 
     // Testing starting steam
-    /*for (size_t i = 0; i < 15; i++)
+    for (size_t i = 0; i < 1; i++)
     {
         Server* server = new Server("DarkRPPPPP"-i, "1277.00.00.11"+i, "8000000"+i);
         AddNewServer(server);
@@ -49,8 +49,14 @@ int main(int argc, char* argv[])
         Client* client = new Client("Billy Bobby 12345679101112131415" + i, "Billy Bobby 12345679101112131415" + i, server, steam, gmod, "testClientasfafasfsaffas" + i);
         AddNewClient(client);
         cout << "Added " << client->username << endl;
-        //client->steam.SetStartSteam(client);
-    }*/
+        client->steam.SetStartSteam(client);
+
+        system("pause");
+        string ipcname = "testClientasfafasfsaffas";
+        gmod.FindCorrectProcess(ipcname);
+        cout << ""
+        gmod.Inject();
+    }
 
     // Init imgui
     GUI::StartGUI();
