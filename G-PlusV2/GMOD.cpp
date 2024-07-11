@@ -118,9 +118,9 @@ void GMOD::Exit()
     // dont need to delete, exiting should clear the memory anyways
 };
 
-void GMOD::Inject(GMOD* gmod)
+void GMOD::Inject()
 {
-    DWORD gmodPID = gmod->pID;
+    DWORD gmodPID = this->pID;
     const char* path = "bin/HookModule.dll";
 
     HANDLE hProc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, gmodPID);
@@ -179,10 +179,12 @@ HANDLE GMOD::FindCorrectProcess(std::string &ipc_name) {
     do {
         HANDLE hProcess = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, FALSE, pe32.th32ProcessID);
         char buffer[MAX_PATH];
-        if (hProcess != NULL && GetProcessInformation()) {
+        if (hProcess != NULL) { // need to skip things which arent gmod
             std::vector<uintptr_t> addresses = Memory::ScanForString(hProcess, ipc_name);
             if (!addresses.empty()) {
                 CloseHandle(snapshot);
+                this->pID = pe32.th32ProcessID;
+                this->pHandle = hProcess;
                 return hProcess; // Found the process containing the ipc_name
             }
             CloseHandle(hProcess); // Always close handles when done
