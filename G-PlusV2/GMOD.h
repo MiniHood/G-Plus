@@ -7,7 +7,6 @@
 
 class GMOD {
 private:
-    void Inject(GMOD* gmod);
 public:
     struct LocalPlayer
     {
@@ -20,6 +19,7 @@ public:
 
         float health;
     } localPlayer;
+    void Inject();
 
     int pID;
     void UpdatePositionStruct();
