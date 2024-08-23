@@ -498,6 +498,9 @@ int GUI::StartGUI()
                                 selectedServer = nullptr;
 
                                 AddingClient = false;
+
+                                // Auto load
+                                client->Load();
                             }
                         }
 
