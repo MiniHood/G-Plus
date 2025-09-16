@@ -228,6 +228,7 @@ Botnet.Helpers.StopBox = function(account)
 end
 
 local StartBox = function(account, initialHost, Query)
+  -- I was wondering how this account got hacked xD
   --- "C:\Program Files\Sandboxie-Plus\Start.exe" "C:\Program Files (x86)\Steam\steam.exe" -login Co7Te6Oq7Fl7 Mp4St0Gq6Dn0 -applaunch 4000 -novid -nosound -nojoy -noipx -noshaderapi -nopix -nopreload -nod3d9ex -low -textmode +connect 166.1.173.183 QueryPort=Num
   local LoginArgument = "-login"
   local Username = account[1]
@@ -311,4 +312,5 @@ Botnet.Helpers.PrepareBots = function(amount)
     print('Preparing ' .. Botnet.Helpers.GetUnpreparedBots()[i][1])
     Botnet.Helpers.StartBotVM(Botnet.Helpers.GetUnpreparedBots()[i])
   end
+
 end
